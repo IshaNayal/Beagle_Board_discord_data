@@ -1,0 +1,703 @@
+id,user,raw_message,clean_message,links,topic,source,timestamp
+1,nmenon,nmenon: oh wow... #gsoc!,oh wow... #gsoc!,[],gsoc_planning,gsoc,2023-2024
+2,ayush1325,ayush1325: @Nishanth Menon Do you use the standard beagleplay config when buidling mainline? Do I need to copy the `firmware` from ti kernel?,@Nishanth Menon Do you use the standard beagleplay config when buidling mainline? Do I need to copy the `firmware` from ti kernel?,[],kernel_dev,gsoc,2023-2024
+3,nmenon,nmenon: i only use upstream defconfig,i only use upstream defconfig,[],general,gsoc,2023-2024
+4,nmenon,"nmenon: if there are patches missing in defconfig in upstream, I post it there","if there are patches missing in defconfig in upstream, I post it there",[],kernel_dev,gsoc,2023-2024
+5,nmenon,nmenon: why do you need firmware? you are working on kernel. everything about firmware comes from beagle's build,why do you need firmware? you are working on kernel. everything about firmware comes from beagle's build,[],kernel_dev,gsoc,2023-2024
+6,nmenon,nmenon: I think robert even releases an upstream based disk image if you want to play around (I dont use it though. i just use the standard beagle images and replace the kernel,I think robert even releases an upstream based disk image if you want to play around (I dont use it though. i just use the standard beagle images and replace the kernel,[],kernel_dev,gsoc,2023-2024
+7,ayush1325,ayush1325: I remember it complaining at me when I was using config from beagleplay /boot/config.,I remember it complaining at me when I was using config from beagleplay /boot/config.,[],general,gsoc,2023-2024
+8,nmenon,nmenon: we dont use beagle's config in upstream 😉 - the only big thing that is missing is containers - beagle customizes to enable docker - upstream is independent of a specific container tech..,we dont use beagle's config in upstream 😉 - the only big thing that is missing is containers - beagle customizes to enable docker - upstream is independent of a specific container tech..,[],general,gsoc,2023-2024
+9,ayush1325,"ayush1325: @Nishanth Menon I have created a work branch (https://github.com/Ayush1325/linux/tree/gb-beagleplay). booted into the kernel. but I am getting `Got Unknown Frame 65`  when loading the driver, which probably means the UART i am connected to is not the correct one.","@Nishanth Menon I have created a work branch (https://github.com/Ayush1325/linux/tree/gb-beagleplay). booted into the kernel. but I am getting `Got Unknown Frame 65`  when loading the driver, which probably means the UART i am connected to is not the correct one.",['https://github.com/Ayush1325/linux/tree/gb-beagleplay).'],kernel_dev,gsoc,2023-2024
+10,ayush1325,"ayush1325: Ok, so it seems the driver is actually working. It's just that the upstream greybus cannot parse the manifest that bcf sends. I guess it is due to the extensions to manifest made for mikrobus. But the svc interactions work.","Ok, so it seems the driver is actually working. It's just that the upstream greybus cannot parse the manifest that bcf sends. I guess it is due to the extensions to manifest made for mikrobus. But the svc interactions work.",[],kernel_dev,gsoc,2023-2024
+11,nmenon,"nmenon: first levels of comments https://github.com/Ayush1325/linux/commits/gb-beagleplay
+1. subject line: follow the convention of the files being touched - do git log --oneline file_name to see convention
+2. commit message should have more detailed commit message to explain to the reviewer why the change is needed etc.. 
+3. the sequence of patches should be:
+Device tree binding yaml binding
+driver changes
+dts update","first levels of comments https://github.com/Ayush1325/linux/commits/gb-beagleplay
+1. subject line: follow the convention of the files being touched - do git log --oneline file_name to see convention
+2. commit message should have more detailed commit message to explain to the reviewer why the change is needed etc.. 
+3. the sequence of patches should be:
+Device tree binding yaml binding
+driver changes
+dts update",['https://github.com/Ayush1325/linux/commits/gb-beagleplay'],kernel_dev,gsoc,2023-2024
+12,nmenon,nmenon: https://github.com/Ayush1325/linux/commit/d4ebd7c0aacb5db2a5827eea1ddbc95894cdf87e should be rolled up with the driver patch,https://github.com/Ayush1325/linux/commit/d4ebd7c0aacb5db2a5827eea1ddbc95894cdf87e should be rolled up with the driver patch,['https://github.com/Ayush1325/linux/commit/d4ebd7c0aacb5db2a5827eea1ddbc95894cdf87e'],kernel_dev,gsoc,2023-2024
+13,nmenon,nmenon: I doubt https://github.com/Ayush1325/linux/commit/8b9326ec614d3d1ce6a2369b376b565aca66b8d7 is going to fly upstream. Device tree must describe hardware.,I doubt https://github.com/Ayush1325/linux/commit/8b9326ec614d3d1ce6a2369b376b565aca66b8d7 is going to fly upstream. Device tree must describe hardware.,['https://github.com/Ayush1325/linux/commit/8b9326ec614d3d1ce6a2369b376b565aca66b8d7'],general,gsoc,2023-2024
+14,ayush1325,ayush1325: The name should be descriptive or should it not be added to the device tree? I picked it up from ti kernel device tree.,The name should be descriptive or should it not be added to the device tree? I picked it up from ti kernel device tree.,[],kernel_dev,gsoc,2023-2024
+15,nmenon,nmenon: https://www.youtube.com/watch?v=JrwZ4xLBU38&list=PLbzoR-pLrL6pY8a8zSKRC6-AihFrruOkq&index=15 watch this video,https://www.youtube.com/watch?v=JrwZ4xLBU38&list=PLbzoR-pLrL6pY8a8zSKRC6-AihFrruOkq&index=15 watch this video,['https://www.youtube.com/watch?v=JrwZ4xLBU38&list=PLbzoR-pLrL6pY8a8zSKRC6-AihFrruOkq&index=15'],general,gsoc,2023-2024
+16,nmenon,nmenon: https://github.com/Ayush1325/linux/commit/237b8f449dd85bd821f4fd1f136720269743a251#diff-8dba146cc2d0e7c65771c9ce939c75b9dc568361253e8e0837b525eb50848355R5 -> You need to add Copyright (C) 2023  BeagleBoard.org Foundation -> @rcn-ee / @JKridner  comment on exact beagleboard.org foundation license to add,https://github.com/Ayush1325/linux/commit/237b8f449dd85bd821f4fd1f136720269743a251#diff-8dba146cc2d0e7c65771c9ce939c75b9dc568361253e8e0837b525eb50848355R5 -> You need to add Copyright (C) 2023  BeagleBoard.org Foundation -> @rcn-ee / @JKridner  comment on exact beagleboard.org foundation license to add,['https://github.com/Ayush1325/linux/commit/237b8f449dd85bd821f4fd1f136720269743a251#diff-8dba146cc2d0e7c65771c9ce939c75b9dc568361253e8e0837b525eb50848355R5'],general,gsoc,2023-2024
+17,nmenon,nmenon: https://github.com/Ayush1325/linux/commit/237b8f449dd85bd821f4fd1f136720269743a251#diff-8dba146cc2d0e7c65771c9ce939c75b9dc568361253e8e0837b525eb50848355R242 no C++ comments in code,https://github.com/Ayush1325/linux/commit/237b8f449dd85bd821f4fd1f136720269743a251#diff-8dba146cc2d0e7c65771c9ce939c75b9dc568361253e8e0837b525eb50848355R242 no C++ comments in code,['https://github.com/Ayush1325/linux/commit/237b8f449dd85bd821f4fd1f136720269743a251#diff-8dba146cc2d0e7c65771c9ce939c75b9dc568361253e8e0837b525eb50848355R242'],general,gsoc,2023-2024
+18,nmenon,nmenon: TI tree does'nt support mikrobus 😉 - it was probably picked up from beagle kernel 🙂,TI tree does'nt support mikrobus 😉 - it was probably picked up from beagle kernel 🙂,[],kernel_dev,gsoc,2023-2024
+19,nmenon,nmenon: https://gist.github.com/nmenon/bf15fc8c5df7d3380a71454e9ad37b58 -> output of kpv -C -V -L -n 3,https://gist.github.com/nmenon/bf15fc8c5df7d3380a71454e9ad37b58 -> output of kpv -C -V -L -n 3,['https://gist.github.com/nmenon/bf15fc8c5df7d3380a71454e9ad37b58'],general,gsoc,2023-2024
+20,nmenon,nmenon: all the patches should pass the standard static checkers which is what kernel_patch_verify runs.. so your series is not ready for submission upstream 😦,all the patches should pass the standard static checkers which is what kernel_patch_verify runs.. so your series is not ready for submission upstream 😦,[],kernel_dev,gsoc,2023-2024
+21,nmenon,"nmenon: since you are working with linux-next https://gist.github.com/nmenon/bf15fc8c5df7d3380a71454e9ad37b58#file-kpv-c-v-l-n-3-L184 -> warnings that is coming in from other files, I'd ignore","since you are working with linux-next https://gist.github.com/nmenon/bf15fc8c5df7d3380a71454e9ad37b58#file-kpv-c-v-l-n-3-L184 -> warnings that is coming in from other files, I'd ignore",['https://gist.github.com/nmenon/bf15fc8c5df7d3380a71454e9ad37b58#file-kpv-c-v-l-n-3-L184'],general,gsoc,2023-2024
+22,ayush1325,ayush1325: Yes. I was fixing those one by one after having run them locally. I will push to the branch once they are fixed.,Yes. I was fixing those one by one after having run them locally. I will push to the branch once they are fixed.,[],general,gsoc,2023-2024
+23,nmenon,"nmenon: ok, good.","ok, good.",[],general,gsoc,2023-2024
+24,ayush1325,"ayush1325: I was more concerned about the fact that without mikrobus in upstream, the driver cannot be used with any actual bcf node.","I was more concerned about the fact that without mikrobus in upstream, the driver cannot be used with any actual bcf node.",[],general,gsoc,2023-2024
+25,nmenon,nmenon: That  is how we build a system up -> this needs to be clearly explained to folks what are these changes meant to bring in and why. how we are building the stack up. this is foundational layer.,That  is how we build a system up -> this needs to be clearly explained to folks what are these changes meant to bring in and why. how we are building the stack up. this is foundational layer.,[],general,gsoc,2023-2024
+26,nmenon,"nmenon: So, cover-letter and commit message of the patch will need to be descriptive enough to explain. device tree binding has to be rather very strong to get past Rob/Krystoff/Connor","So, cover-letter and commit message of the patch will need to be descriptive enough to explain. device tree binding has to be rather very strong to get past Rob/Krystoff/Connor",[],kernel_dev,gsoc,2023-2024
+27,ayush1325,"ayush1325: Yeah, I definitely need to add that. I didn't think mikrobus would be needed if I am not actually using mikrobus.","Yeah, I definitely need to add that. I didn't think mikrobus would be needed if I am not actually using mikrobus.",[],general,gsoc,2023-2024
+28,nmenon,"nmenon: yeah - keep in mind that the people who  will review have no idea what beagleplay is. or  cc1352 is. unless they are convinced this is benefitting large userbase, it is a tough sell -> it is branded narrowly as beagleplay greybus extension.. which makes it harder to accept","yeah - keep in mind that the people who  will review have no idea what beagleplay is. or  cc1352 is. unless they are convinced this is benefitting large userbase, it is a tough sell -> it is branded narrowly as beagleplay greybus extension.. which makes it harder to accept",[],kernel_dev,gsoc,2023-2024
+29,ayush1325,ayush1325: Hmm. I have actually considered branding it as a generic greybus extension when we have SVC in a different co-processor with UART between them. The only device I currently know of which falls in this is beagleplay though.,Hmm. I have actually considered branding it as a generic greybus extension when we have SVC in a different co-processor with UART between them. The only device I currently know of which falls in this is beagleplay though.,[],kernel_dev,gsoc,2023-2024
+30,ayush1325,"ayush1325: The SVC running code simply needs to be connected with UART, not even be in the same pcb if you really want to stretch it.","The SVC running code simply needs to be connected with UART, not even be in the same pcb if you really want to stretch it.",[],general,gsoc,2023-2024
+31,nmenon,nmenon: you have to sell it's potential to a wider base than beagleplay - that is key. and have documentation to explain how people can use it beyond beagleplay. that makes it more interesting to folks to review and accept.,you have to sell it's potential to a wider base than beagleplay - that is key. and have documentation to explain how people can use it beyond beagleplay. that makes it more interesting to folks to review and accept.,[],general,gsoc,2023-2024
+32,ayush1325,ayush1325: Thanks. Will definitely look into that.,Thanks. Will definitely look into that.,[],general,gsoc,2023-2024
+33,nmenon,nmenon: i am not entirely sure where the staging drivers' device tree bindings go.. hmm..,i am not entirely sure where the staging drivers' device tree bindings go.. hmm..,[],kernel_dev,gsoc,2023-2024
+34,nmenon,nmenon: funny to see greybus sitting in staging area after all these years!,funny to see greybus sitting in staging area after all these years!,[],kernel_dev,gsoc,2023-2024
+35,nmenon,"nmenon: given an option, i might have extended actual non-staging virtio framework instead..","given an option, i might have extended actual non-staging virtio framework instead..",[],general,gsoc,2023-2024
+36,nmenon,"nmenon: sorry, did'nt mean to diminish your work.. just thinking aloud.. looking at this  for the first time.","sorry, did'nt mean to diminish your work.. just thinking aloud.. looking at this  for the first time.",[],general,gsoc,2023-2024
+37,ayush1325,ayush1325: Sure. What did you mean by extending virtio framework? It seems interesting.,Sure. What did you mean by extending virtio framework? It seems interesting.,[],general,gsoc,2023-2024
+38,nmenon,nmenon: but yeah - in the cover-letter it will need to explain why existing virtio or other similar frameworks were not chosen and why grey-bus was the logical answer..,but yeah - in the cover-letter it will need to explain why existing virtio or other similar frameworks were not chosen and why grey-bus was the logical answer..,[],general,gsoc,2023-2024
+39,nmenon,nmenon: https://www.kernel.org/doc/html/next/driver-api/virtio/virtio.html,https://www.kernel.org/doc/html/next/driver-api/virtio/virtio.html,['https://www.kernel.org/doc/html/next/driver-api/virtio/virtio.html'],kernel_dev,gsoc,2023-2024
+40,nmenon,"nmenon: anyways, thanks for putting the branch together.. it is much easier to see what is going on.. i gotta go now, kids are waking up.. gotta feed the little monsters 😉","anyways, thanks for putting the branch together.. it is much easier to see what is going on.. i gotta go now, kids are waking up.. gotta feed the little monsters 😉",[],general,gsoc,2023-2024
+41,ayush1325,ayush1325: Sure. Thanks for all your help. Will keep working on this in my free time.,Sure. Thanks for all your help. Will keep working on this in my free time.,[],general,gsoc,2023-2024
+42,nmenon,nmenon: np,np,[],general,gsoc,2023-2024
+43,ayush1325,"ayush1325: @Nishanth Menon I have tried writing a dt schema: https://github.com/Ayush1325/linux/commit/b8ef3d190256623426dd7913cb8d9c636bd14992. It doesn't seem to throw any eroros on running `make dt_binding_check DT_SCHEMA_FILES=beaglecc1352.yaml -j12` but well, I have no idea if it is what is expected.","@Nishanth Menon I have tried writing a dt schema: https://github.com/Ayush1325/linux/commit/b8ef3d190256623426dd7913cb8d9c636bd14992. It doesn't seem to throw any eroros on running `make dt_binding_check DT_SCHEMA_FILES=beaglecc1352.yaml -j12` but well, I have no idea if it is what is expected.",['https://github.com/Ayush1325/linux/commit/b8ef3d190256623426dd7913cb8d9c636bd14992.'],kernel_dev,gsoc,2023-2024
+44,ayush1325,"ayush1325: ```
+subject line: follow the convention of the files being touched - do git log --oneline file_name to see convention
+```
+Which commit are you referring to? The gb-beagleplay commit touches the Makefile, KConfig and gb-beagleplay. Should it instead say `greybus: gb-beagleplay:`?","```
+subject line: follow the convention of the files being touched - do git log --oneline file_name to see convention
+```
+Which commit are you referring to? The gb-beagleplay commit touches the Makefile, KConfig and gb-beagleplay. Should it instead say `greybus: gb-beagleplay:`?",[],kernel_dev,gsoc,2023-2024
+45,nmenon,nmenon: Did u run kpv? It takes care of the checks. Directory path looks wrong,Did u run kpv? It takes care of the checks. Directory path looks wrong,[],general,gsoc,2023-2024
+46,nmenon,"nmenon: Compatible. You just have one item. So just const: beagle, cc1352","Compatible. You just have one item. So just const: beagle, cc1352",[],general,gsoc,2023-2024
+47,nmenon,nmenon: Also add an example dts to show. The main fight here is to explain why is this hardware definition,Also add an example dts to show. The main fight here is to explain why is this hardware definition,[],kernel_dev,gsoc,2023-2024
+48,nmenon,"nmenon: As I said I want cc'ed on patches themselves, so wasn't able to give exact comments. But if you did do what I said on the files, you should see the pattern. The dts patch for example was definitely wrong.","As I said I want cc'ed on patches themselves, so wasn't able to give exact comments. But if you did do what I said on the files, you should see the pattern. The dts patch for example was definitely wrong.",[],kernel_dev,gsoc,2023-2024
+49,ayush1325,ayush1325: It should not go under `serial`?,It should not go under `serial`?,[],general,gsoc,2023-2024
+50,ayush1325,"ayush1325: @Nishanth Menon Also, should I really cc lkml on all the patches even though I am sending to greybus mailing list and Ccing device tree ml?","@Nishanth Menon Also, should I really cc lkml on all the patches even though I am sending to greybus mailing list and Ccing device tree ml?",[],kernel_dev,gsoc,2023-2024
+51,nmenon,nmenon: Yes,Yes,[],general,gsoc,2023-2024
+52,nmenon,nmenon: scripts/get_maintainers.pl will tell u the same thing,scripts/get_maintainers.pl will tell u the same thing,[],general,gsoc,2023-2024
+53,ayush1325,ayush1325: @Nishanth Menon I think `s/dev_warn/dev_warn_ratelimited` means substituting (at least in vimspeak)?,@Nishanth Menon I think `s/dev_warn/dev_warn_ratelimited` means substituting (at least in vimspeak)?,[],general,gsoc,2023-2024
+54,nmenon,nmenon: yup,yup,[],general,gsoc,2023-2024
+55,ayush1325,ayush1325: Ok. I thought the ratelimit comment was about general ratelimiting and not logging.,Ok. I thought the ratelimit comment was about general ratelimiting and not logging.,[],general,gsoc,2023-2024
+56,nmenon,nmenon: his comment specifically was on dev_warn,his comment specifically was on dev_warn,[],general,gsoc,2023-2024
+57,ayush1325,ayush1325: Yeah. My mistake. I was't really aware about the ratelimited versions of logging to it never crossed my mind.,Yeah. My mistake. I was't really aware about the ratelimited versions of logging to it never crossed my mind.,[],general,gsoc,2023-2024
+58,nmenon,nmenon: I think the most troublesome one is https://lore.kernel.org/all/937ea540-09e1-65f2-7165-662bbee2542b@kernel.org/,I think the most troublesome one is https://lore.kernel.org/all/937ea540-09e1-65f2-7165-662bbee2542b@kernel.org/,['https://lore.kernel.org/all/937ea540-09e1-65f2-7165-662bbee2542b@kernel.org/'],kernel_dev,gsoc,2023-2024
+59,nmenon,nmenon: I dont see any other greybus bindings in Documentation/device-tree/ ... so makes this a big challenge,I dont see any other greybus bindings in Documentation/device-tree/ ... so makes this a big challenge,[],kernel_dev,gsoc,2023-2024
+60,ayush1325,ayush1325: Does a binding which resides in childnode (beaglecc1352 in our case) need to define the properties of the main device or parent (main_uart6)?,Does a binding which resides in childnode (beaglecc1352 in our case) need to define the properties of the main device or parent (main_uart6)?,[],kernel_dev,gsoc,2023-2024
+61,ayush1325,"ayush1325: Are there maybe any bindings that just introduce a compatible string and nothing more? Maybe that would be a good place to start? 
+Greybus is now in stable, so it should at least be possible to add greybus bindings, if a bit hard","Are there maybe any bindings that just introduce a compatible string and nothing more? Maybe that would be a good place to start? 
+Greybus is now in stable, so it should at least be possible to add greybus bindings, if a bit hard",[],kernel_dev,gsoc,2023-2024
+62,nmenon,"nmenon: no - wl1807 binding is it's own yaml file.
+What we could claim is 1352 as a binding..","no - wl1807 binding is it's own yaml file.
+What we could claim is 1352 as a binding..",[],kernel_dev,gsoc,2023-2024
+63,nmenon,"nmenon: so greybus is just the bus protocol it uses, but the main thing is dt describes how 1352 device integrates. NOTE: this might conflict with other approaches..","so greybus is just the bus protocol it uses, but the main thing is dt describes how 1352 device integrates. NOTE: this might conflict with other approaches..",[],kernel_dev,gsoc,2023-2024
+64,ayush1325,"ayush1325: Yes, it does seem like claiming it 1352 binding might end up being what needs to be done. I would still ask around in the patch thread to see if there are any better approaches.","Yes, it does seem like claiming it 1352 binding might end up being what needs to be done. I would still ask around in the patch thread to see if there are any better approaches.",[],kernel_dev,gsoc,2023-2024
+65,jkridner,jkridner: I'm moving the ideas page for next year... help reviewing and editing appreciated: https://bbb.io/gsocideas,I'm moving the ideas page for next year... help reviewing and editing appreciated: https://bbb.io/gsocideas,['https://bbb.io/gsocideas'],gsoc_planning,gsoc,2023-2024
+66,harshit6383,harshit6383: I want to contribute to gsoc can anyone suggest a good repo in beagle board before proposing any idea my language is javascript.,I want to contribute to gsoc can anyone suggest a good repo in beagle board before proposing any idea my language is javascript.,[],gsoc_planning,gsoc,2023-2024
+67,harshit6383,harshit6383: Sorry if this question is very basic.,Sorry if this question is very basic.,[],general,gsoc,2023-2024
+68,harshit6383,harshit6383: Actually I was able to find project ideas but I need to submit some initial PRs before giving gsoc proposal for which I need to find initial repository to contribute.,Actually I was able to find project ideas but I need to submit some initial PRs before giving gsoc proposal for which I need to find initial repository to contribute.,[],gsoc_planning,gsoc,2023-2024
+69,rcnee,rcnee: Fun opps on mainline (6.6-rc1) ```[   12.687223] gb_beagleplay serial0-0: Using baudrate 115200```,Fun opps on mainline (6.6-rc1) ```[   12.687223] gb_beagleplay serial0-0: Using baudrate 115200```,[],general,gsoc,2023-2024
+70,rcnee,rcnee: https://git.beagleboard.org/RobertCNelson/arm64-multiplatform/-/tree/v6.6.x-arm64-k3/patches/gb-beagleplay might be behind...,https://git.beagleboard.org/RobertCNelson/arm64-multiplatform/-/tree/v6.6.x-arm64-k3/patches/gb-beagleplay might be behind...,['https://git.beagleboard.org/RobertCNelson/arm64-multiplatform/-/tree/v6.6.x-arm64-k3/patches/gb-beagleplay'],kernel_dev,gsoc,2023-2024
+71,ayush1325,ayush1325: Hmm. The patch 3 seems to be missing: https://github.com/Ayush1325/linux/commit/63fe6da2be2472133565de8f23ef92d710eb5d84. I also have more NULL checks since that patch. I will check out if I can reproduce it on my local tree.,Hmm. The patch 3 seems to be missing: https://github.com/Ayush1325/linux/commit/63fe6da2be2472133565de8f23ef92d710eb5d84. I also have more NULL checks since that patch. I will check out if I can reproduce it on my local tree.,['https://github.com/Ayush1325/linux/commit/63fe6da2be2472133565de8f23ef92d710eb5d84.'],kernel_dev,gsoc,2023-2024
+72,rcnee,rcnee: Oh patch 3 got moved into the DT changes repo..,Oh patch 3 got moved into the DT changes repo..,[],kernel_dev,gsoc,2023-2024
+73,ayush1325,ayush1325: Yeah. It will stay on 3 patches from now (as far as I can tell).,Yeah. It will stay on 3 patches from now (as far as I can tell).,[],kernel_dev,gsoc,2023-2024
+74,rcnee,rcnee: https://git.beagleboard.org/beagleboard/BeagleBoard-DeviceTrees/-/blob/v6.6.x/src/arm64/k3-am625-beagleplay.dts,https://git.beagleboard.org/beagleboard/BeagleBoard-DeviceTrees/-/blob/v6.6.x/src/arm64/k3-am625-beagleplay.dts,['https://git.beagleboard.org/beagleboard/BeagleBoard-DeviceTrees/-/blob/v6.6.x/src/arm64/k3-am625-beagleplay.dts'],kernel_dev,gsoc,2023-2024
+75,rcnee,"rcnee: I had other DT changes, it was easier the changing patch 3 again and again","I had other DT changes, it was easier the changing patch 3 again and again",[],kernel_dev,gsoc,2023-2024
+76,ayush1325,ayush1325: Sure. the mainline and beagle kernel dt are different so I am not sure if you could directly apply the patch anyway. Although the dt name will change again from all the feedback I have got.,Sure. the mainline and beagle kernel dt are different so I am not sure if you could directly apply the patch anyway. Although the dt name will change again from all the feedback I have got.,[],kernel_dev,gsoc,2023-2024
+77,ayush1325,"ayush1325: So how much of CC1352 do I need to describe in dtbindings? The Kernel docs say you should describe the complete device so I guess I should use the complete binding from zephyr/dts (modified for linux since the zephyr dt schema seems quite different), and define cc1352 as an soc. 
+Also should it be `ti,cc1352` or `beagle,cc1352`?","So how much of CC1352 do I need to describe in dtbindings? The Kernel docs say you should describe the complete device so I guess I should use the complete binding from zephyr/dts (modified for linux since the zephyr dt schema seems quite different), and define cc1352 as an soc. 
+Also should it be `ti,cc1352` or `beagle,cc1352`?",[],kernel_dev,gsoc,2023-2024
+78,ayush1325,"ayush1325: @JKridner @Nishanth Menon As outlined in the mailing list by Jason (https://lists.linaro.org/archives/list/greybus-dev@lists.linaro.org/message/ZLH5INCQPV3YEYMVCW4V2R5CDMHFQOOA/), I think branding it as BeagleConnect would be a good option. 
+This would mean having bindings in `Documentation/devicetree/bindings/firmware/beagle,beagleconnect.yaml` and allow future additions as BeagleConnect instead of being tied to beagleplay. The driver can be renamed as `gb-beagleconnect`.","@JKridner @Nishanth Menon As outlined in the mailing list by Jason (https://lists.linaro.org/archives/list/greybus-dev@lists.linaro.org/message/ZLH5INCQPV3YEYMVCW4V2R5CDMHFQOOA/), I think branding it as BeagleConnect would be a good option. 
+This would mean having bindings in `Documentation/devicetree/bindings/firmware/beagle,beagleconnect.yaml` and allow future additions as BeagleConnect instead of being tied to beagleplay. The driver can be renamed as `gb-beagleconnect`.","['https://lists.linaro.org/archives/list/greybus-dev@lists.linaro.org/message/ZLH5INCQPV3YEYMVCW4V2R5CDMHFQOOA/),']",kernel_dev,gsoc,2023-2024
+79,nmenon,nmenon: dt bindings needs to be hardware,dt bindings needs to be hardware,[],kernel_dev,gsoc,2023-2024
+80,ayush1325,"ayush1325: The dt bindings under `Documentation/devicetree/bindings/firmware/` seem to be more related to firmware running on top of soc than the device itself. Like `amlogic,meson-gxbb-sm.yaml` seems to be used to identify `Amlogic Secure Monitor (SM)` and has a single required compatibilty or `nvidia,tegra186-bpmp.yaml` for BPMP processor in nvidia gpus.
+We can describe cc1352 as the beagleconnect or svc processor in case of beagleplay device rather than any generic cc1352.","The dt bindings under `Documentation/devicetree/bindings/firmware/` seem to be more related to firmware running on top of soc than the device itself. Like `amlogic,meson-gxbb-sm.yaml` seems to be used to identify `Amlogic Secure Monitor (SM)` and has a single required compatibilty or `nvidia,tegra186-bpmp.yaml` for BPMP processor in nvidia gpus.
+We can describe cc1352 as the beagleconnect or svc processor in case of beagleplay device rather than any generic cc1352.",[],kernel_dev,gsoc,2023-2024
+81,nmenon,nmenon: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/arch/arm64/boot/dts/nvidia/tegra194.dtsi#n1723 for example is tied to a specific hardware,https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/arch/arm64/boot/dts/nvidia/tegra194.dtsi#n1723 for example is tied to a specific hardware,['https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/arch/arm64/boot/dts/nvidia/tegra194.dtsi#n1723'],kernel_dev,gsoc,2023-2024
+82,nmenon,nmenon: you need to describe the hardware and then properties or subnodes (such as links) OR you will need to go via actual h/w call path - such as smc (secure monitor call) https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/arch/arm64/boot/dts/freescale/imx8ulp.dtsi#n169,you need to describe the hardware and then properties or subnodes (such as links) OR you will need to go via actual h/w call path - such as smc (secure monitor call) https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/arch/arm64/boot/dts/freescale/imx8ulp.dtsi#n169,['https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/arch/arm64/boot/dts/freescale/imx8ulp.dtsi#n169'],kernel_dev,gsoc,2023-2024
+83,nmenon,nmenon: simplest will be to link it as cc1352 and then extend the description as a link property,simplest will be to link it as cc1352 and then extend the description as a link property,[],general,gsoc,2023-2024
+84,nmenon,"nmenon: it will fly better with the maintainers as ""generic"" devices are strictly frowned upon","it will fly better with the maintainers as ""generic"" devices are strictly frowned upon",[],general,gsoc,2023-2024
+85,ayush1325,"ayush1325: What is a link property? Do you mean `links` which seems to allow pointing to a label? I guess what you are suggesting is something like the following:
+```dts
+&main_uart6 {
+  links = <&cc1352_uart>;
+  ...
+}
+
+&cc1352 {
+   cc1352_uart {
+     compatibile = ""something"";
+   }
+  ...
+}
+```","What is a link property? Do you mean `links` which seems to allow pointing to a label? I guess what you are suggesting is something like the following:
+```dts
+&main_uart6 {
+  links = <&cc1352_uart>;
+  ...
+}
+
+&cc1352 {
+   cc1352_uart {
+     compatibile = ""something"";
+   }
+  ...
+}
+```",[],kernel_dev,gsoc,2023-2024
+86,nmenon,"nmenon: PHandle, not literally links property","PHandle, not literally links property",[],general,gsoc,2023-2024
+87,ayush1325,ayush1325: @Nishanth Menon Should I place cc1352 bindings under `soc/ti`? or maybe create a new folder for `beagle`?,@Nishanth Menon Should I place cc1352 bindings under `soc/ti`? or maybe create a new folder for `beagle`?,[],kernel_dev,gsoc,2023-2024
+88,nmenon,nmenon: typically we dont. soc/ti are for description of the entire SoC. wllink power ICs etc go their specific folders,typically we dont. soc/ti are for description of the entire SoC. wllink power ICs etc go their specific folders,[],general,gsoc,2023-2024
+89,ayush1325,ayush1325: Hmm. Won't we have to categorize CC1352 as an SoC? Although I guess categorizing it as SoC would mean having to describe the complete hardware (even the parts not being used) according to docs.,Hmm. Won't we have to categorize CC1352 as an SoC? Although I guess categorizing it as SoC would mean having to describe the complete hardware (even the parts not being used) according to docs.,[],general,gsoc,2023-2024
+90,ayush1325,"ayush1325: @Nishanth Menon What resources would need to be added to the dt bindings?  Krzysztof mentioned this: ""By resources I mean whatever is needed to power it up and operate, e.g. clocks, supplies, reset lines."". But well, I am not sure if anything other than compatible is needed for cc1352p7 as an mcu","@Nishanth Menon What resources would need to be added to the dt bindings?  Krzysztof mentioned this: ""By resources I mean whatever is needed to power it up and operate, e.g. clocks, supplies, reset lines."". But well, I am not sure if anything other than compatible is needed for cc1352p7 as an mcu",[],kernel_dev,gsoc,2023-2024
+91,ayush1325,"ayush1325: Also, it was suggested to use `ti,cc1352p7` as the device name. Since this is not a full SoC (I think?), it should probably go into `arm` There is a `arm/ti` folder as well so should it be put there?","Also, it was suggested to use `ti,cc1352p7` as the device name. Since this is not a full SoC (I think?), it should probably go into `arm` There is a `arm/ti` folder as well so should it be put there?",[],general,gsoc,2023-2024
+92,nmenon,nmenon: You will need things like reset lines etc.,You will need things like reset lines etc.,[],general,gsoc,2023-2024
+93,nmenon,nmenon: I thought I explained previously,I thought I explained previously,[],general,gsoc,2023-2024
+94,ayush1325,ayush1325: Reset lines refers to RESET_IN in data sheet right?,Reset lines refers to RESET_IN in data sheet right?,[],general,gsoc,2023-2024
+95,nmenon,nmenon: Yes. There will be clocks etc,Yes. There will be clocks etc,[],general,gsoc,2023-2024
+96,nmenon,nmenon: Look at a peripheral on uart as an example,Look at a peripheral on uart as an example,[],general,gsoc,2023-2024
+97,ayush1325,"ayush1325: You mentioned that they go to their specific folders, but well, I am not sure if `cc1352p7` is a net mcu or a generic arm mcu. And there are other `cc1352p*` and `cc1352r*`, so not sure if that changes anything.","You mentioned that they go to their specific folders, but well, I am not sure if `cc1352p7` is a net mcu or a generic arm mcu. And there are other `cc1352p*` and `cc1352r*`, so not sure if that changes anything.",[],general,gsoc,2023-2024
+98,nmenon,"nmenon: You need to look at it as a peripheral, not a processor view","You need to look at it as a peripheral, not a processor view",[],general,gsoc,2023-2024
+99,nmenon,nmenon: think that cc1352p7 is not programmable. it is a ROMed peripheral,think that cc1352p7 is not programmable. it is a ROMed peripheral,[],general,gsoc,2023-2024
+100,nmenon,"nmenon: now, what does cc1352p7 need to talk to SoC from SoC's perspective - remember the description is agnostic of beagleplay. even iMX8 should be able to interface with it","now, what does cc1352p7 need to talk to SoC from SoC's perspective - remember the description is agnostic of beagleplay. even iMX8 should be able to interface with it",[],general,gsoc,2023-2024
+101,nmenon,"nmenon: it has a clock, reset lines, may be power supplies..","it has a clock, reset lines, may be power supplies..",[],general,gsoc,2023-2024
+102,nmenon,nmenon: you would start from https://www.ti.com/product/CC1352P7,you would start from https://www.ti.com/product/CC1352P7,['https://www.ti.com/product/CC1352P7'],general,gsoc,2023-2024
+103,ayush1325,"ayush1325: Thanks, will start there","Thanks, will start there",[],general,gsoc,2023-2024
+104,nmenon,"nmenon: supplies, reset, osc clock - correct?","supplies, reset, osc clock - correct?",[],general,gsoc,2023-2024
+105,nmenon,"nmenon: DT is hardware description -> so using Documentation/devicetree/bindings/net/wireless/ti,wlcore.yaml as an example..","DT is hardware description -> so using Documentation/devicetree/bindings/net/wireless/ti,wlcore.yaml as an example..",[],kernel_dev,gsoc,2023-2024
+106,nmenon,"nmenon: See these examples: https://www.kernel.org/doc/Documentation/devicetree/bindings/net/wireless/ti%2Cwlcore.yaml - it can interface with mmc, spi among other options..","See these examples: https://www.kernel.org/doc/Documentation/devicetree/bindings/net/wireless/ti%2Cwlcore.yaml - it can interface with mmc, spi among other options..",['https://www.kernel.org/doc/Documentation/devicetree/bindings/net/wireless/ti%2Cwlcore.yaml'],kernel_dev,gsoc,2023-2024
+107,nmenon,"nmenon: Rather curious case here though - if cc1352p7 is a peripheral - it has a different dt view compared to zephyr trying to describe cc1352p7 in device tree, where it is the processor view!","Rather curious case here though - if cc1352p7 is a peripheral - it has a different dt view compared to zephyr trying to describe cc1352p7 in device tree, where it is the processor view!",[],kernel_dev,gsoc,2023-2024
+108,ayush1325,ayush1325: @Nishanth Menon I have added `reset-gpios` and `vdds-supply` (https://github.com/Ayush1325/linux/blob/f131506ea930b12f8794b168f580c8dbe99780f9/arch/arm64/boot/dts/ti/k3-am625-beagleplay.dts#L874). I referred to design docs (https://docs.beagleboard.org/latest/boards/beagleplay/03-design.html) for connections. Should I send a new patch or wait for feedback on `gb-beagleplay` driver?,@Nishanth Menon I have added `reset-gpios` and `vdds-supply` (https://github.com/Ayush1325/linux/blob/f131506ea930b12f8794b168f580c8dbe99780f9/arch/arm64/boot/dts/ti/k3-am625-beagleplay.dts#L874). I referred to design docs (https://docs.beagleboard.org/latest/boards/beagleplay/03-design.html) for connections. Should I send a new patch or wait for feedback on `gb-beagleplay` driver?,"['https://github.com/Ayush1325/linux/blob/f131506ea930b12f8794b168f580c8dbe99780f9/arch/arm64/boot/dts/ti/k3-am625-beagleplay.dts#L874).', 'https://docs.beagleboard.org/latest/boards/beagleplay/03-design.html)']",kernel_dev,gsoc,2023-2024
+109,nmenon,nmenon: I am out on vacation this week. I can respond next week.,I am out on vacation this week. I can respond next week.,[],general,gsoc,2023-2024
+110,ayush1325,"ayush1325: Sure, no problem.","Sure, no problem.",[],general,gsoc,2023-2024
+111,vaibhav210603,"vaibhav210603: Hello, I am Vaibhav
+I am new to open source and seeking for a guidance/mentorship to contribute here.
+I have been working on Js for a while now and currently learning react.js
+would be really glad and grateful for a response","Hello, I am Vaibhav
+I am new to open source and seeking for a guidance/mentorship to contribute here.
+I have been working on Js for a while now and currently learning react.js
+would be really glad and grateful for a response",[],gsoc_planning,gsoc,2023-2024
+112,somismyuserid,somismyuserid: hi,hi,[],general,gsoc,2023-2024
+113,somismyuserid,somismyuserid: how can i start contributing ??,how can i start contributing ??,[],general,gsoc,2023-2024
+114,jkridner,jkridner: https://forum.beagleboard.org/t/gsoc-ideas/35850,https://forum.beagleboard.org/t/gsoc-ideas/35850,['https://forum.beagleboard.org/t/gsoc-ideas/35850'],gsoc_planning,gsoc,2023-2024
+115,jkridner,jkridner: I need this updated for 2024!!,I need this updated for 2024!!,[],general,gsoc,2023-2024
+116,jkridner,jkridner: _waves to @av500_,_waves to @av500_,[],general,gsoc,2023-2024
+117,melta101,melta101: can we provide any ideas or are they exclusive to specific people?,can we provide any ideas or are they exclusive to specific people?,[],gsoc_planning,gsoc,2023-2024
+118,av500,av500: waves to @JKridner,waves to @JKridner,[],general,gsoc,2023-2024
+119,jkridner,jkridner: hi @av500 !!!!,hi @av500 !!!!,[],general,gsoc,2023-2024
+120,jkridner,jkridner: @melta101 idea away!,@melta101 idea away!,[],gsoc_planning,gsoc,2023-2024
+121,melta101,melta101: i was thinking of implementing a library to access cpufreq  so it will be easier for other dev to create solution tailored to the required compute power efficiently,i was thinking of implementing a library to access cpufreq  so it will be easier for other dev to create solution tailored to the required compute power efficiently,[],general,gsoc,2023-2024
+122,nmenon,nmenon: Why override kernel governor? please dont introduce systemd into this world.. 😦 oh no..... rather if governors of cpufreq can be made better it helps everyone.. unless you are thinking some sort of extension of powertop or the like..,Why override kernel governor? please dont introduce systemd into this world.. 😦 oh no..... rather if governors of cpufreq can be made better it helps everyone.. unless you are thinking some sort of extension of powertop or the like..,[],kernel_dev,gsoc,2023-2024
+123,melta101,"melta101: yea, something like an extension of powertop","yea, something like an extension of powertop",[],general,gsoc,2023-2024
+124,melta101,"melta101: ah also, one thing which i wanted to do was design a HMI cape, makes it less problematic, carrying a laptop for it","ah also, one thing which i wanted to do was design a HMI cape, makes it less problematic, carrying a laptop for it",[],general,gsoc,2023-2024
+125,melta101,"melta101: so designing a lib for it,along the line...","so designing a lib for it,along the line...",[],general,gsoc,2023-2024
+126,dhruvag2000,"dhruvag2000: Beagleboard mentors meetup in Mumbai 😃
+Had a great time over some slices of pizza and got to see some great fellow mentors and students in person!","Beagleboard mentors meetup in Mumbai 😃
+Had a great time over some slices of pizza and got to see some great fellow mentors and students in person!",[],gsoc_planning,gsoc,2023-2024
+127,jkridner,jkridner: Time to get started with GSoC. Interested? Contact me. Share your project ideas at https://bbb.io/gsocideas!,Time to get started with GSoC. Interested? Contact me. Share your project ideas at https://bbb.io/gsocideas!,['https://bbb.io/gsocideas!'],gsoc_planning,gsoc,2023-2024
+128,melta101,"melta101: hello,
+i would like share one of my ideas
+but the link shows invalid","hello,
+i would like share one of my ideas
+but the link shows invalid",[],gsoc_planning,gsoc,2023-2024
+129,anujdeshpande,anujdeshpande: @melta101  - https://old.beagleboard.org/gsocideas,@melta101  - https://old.beagleboard.org/gsocideas,['https://old.beagleboard.org/gsocideas'],gsoc_planning,gsoc,2023-2024
+130,melta101,melta101: Thank you,Thank you,[],general,gsoc,2023-2024
+131,jkridner,jkridner: @melta101 I didn't see a post from you.,@melta101 I didn't see a post from you.,[],general,gsoc,2023-2024
+132,jkridner,jkridner: I posted https://forum.beagleboard.org/t/low-latency-risc-v-i-o-cpu-core/37156,I posted https://forum.beagleboard.org/t/low-latency-risc-v-i-o-cpu-core/37156,['https://forum.beagleboard.org/t/low-latency-risc-v-i-o-cpu-core/37156'],general,gsoc,2023-2024
+133,dhruvag2000,"dhruvag2000: https://blynk.io/blog/blynk-ncp-integrated-with-zephyr-rtos?utm_source=linkedin&utm_medium=smm&utm_campaign=features&utm_content=zephyr
+@lorforlinux  could this give way to blynk + BCF or Bplay kind of an integration?","https://blynk.io/blog/blynk-ncp-integrated-with-zephyr-rtos?utm_source=linkedin&utm_medium=smm&utm_campaign=features&utm_content=zephyr
+@lorforlinux  could this give way to blynk + BCF or Bplay kind of an integration?",['https://blynk.io/blog/blynk-ncp-integrated-with-zephyr-rtos?utm_source=linkedin&utm_medium=smm&utm_campaign=features&utm_content=zephyr'],zephyr,gsoc,2023-2024
+134,melta101,"melta101: Hello @JKridner 
+i have been going to the repo
+could you suggest some ideas where I can contribute to improving the existing system
+I have worked with SDRs and also majorly worked on device driver development on multiple SBCs such as beaglebone Black","Hello @JKridner 
+i have been going to the repo
+could you suggest some ideas where I can contribute to improving the existing system
+I have worked with SDRs and also majorly worked on device driver development on multiple SBCs such as beaglebone Black",[],gsoc_planning,gsoc,2023-2024
+135,melta101,melta101: i see amazing possibilities in beagle V Fire in SDR development,i see amazing possibilities in beagle V Fire in SDR development,[],general,gsoc,2023-2024
+136,melta101,melta101: a SDR solution for Beaglebone for at least sub Ghz as a starting point,a SDR solution for Beaglebone for at least sub Ghz as a starting point,[],general,gsoc,2023-2024
+137,melta101,melta101: creating a solution to integrate GNUradio and beaglebone,creating a solution to integrate GNUradio and beaglebone,[],general,gsoc,2023-2024
+138,jkridner,jkridner: I'd suggest targeting BeagleV-Fire.,I'd suggest targeting BeagleV-Fire.,[],general,gsoc,2023-2024
+139,jkridner,jkridner: There are some existing BeagleBone SDR capes that might be worth exploring. LimeSDR.,There are some existing BeagleBone SDR capes that might be worth exploring. LimeSDR.,[],general,gsoc,2023-2024
+140,jkridner,jkridner: KiwiSDR,KiwiSDR,[],general,gsoc,2023-2024
+141,melta101,"melta101: during my time with SDR and gnu radio 
+there was no direct support for KiwiSDR and GNURadio
+luckily there are OE SDKs with GNU Radio for embedded devices","during my time with SDR and gnu radio 
+there was no direct support for KiwiSDR and GNURadio
+luckily there are OE SDKs with GNU Radio for embedded devices",[],general,gsoc,2023-2024
+142,melta101,melta101: and having an FPGA in fire actually helps in parallel processing the IQ signals,and having an FPGA in fire actually helps in parallel processing the IQ signals,[],general,gsoc,2023-2024
+143,melta101,melta101: the problem i see is with the supply of kiwiSDR in my location,the problem i see is with the supply of kiwiSDR in my location,[],general,gsoc,2023-2024
+144,melta101,"melta101: https://forum.beagleboard.org/t/sdr-toolkit-integration-to-beaglebone/37177
+i am welcome to sugeestion as this is new to me.","https://forum.beagleboard.org/t/sdr-toolkit-integration-to-beaglebone/37177
+i am welcome to sugeestion as this is new to me.",['https://forum.beagleboard.org/t/sdr-toolkit-integration-to-beaglebone/37177'],general,gsoc,2023-2024
+145,jkridner,jkridner: @melta101 you put me as a mentor. would you not mentor?,@melta101 you put me as a mentor. would you not mentor?,[],gsoc_planning,gsoc,2023-2024
+146,jkridner,jkridner: I really hate discord.,I really hate discord.,[],general,gsoc,2023-2024
+147,jkridner,jkridner: is there no way to get public logs of channels?,is there no way to get public logs of channels?,[],general,gsoc,2023-2024
+148,melta101,"melta101: There should be an option ""moderator log""","There should be an option ""moderator log""",[],general,gsoc,2023-2024
+149,unknown,GSoC Forum Bot: ,GSoC Forum Bot:,[],gsoc_planning,gsoc,2023-2024
+150,melta101,"melta101: As I am relatively new to to open source contribution
+I'll wouldn't think being a mentor would be a good idea
+But I do want to get kick off this project
+I do have a general layout on how to proceed","As I am relatively new to to open source contribution
+I'll wouldn't think being a mentor would be a good idea
+But I do want to get kick off this project
+I do have a general layout on how to proceed",[],gsoc_planning,gsoc,2023-2024
+151,jkridner,"jkridner: I see ""audit log"", but not a general channel chat log.","I see ""audit log"", but not a general channel chat log.",[],general,gsoc,2023-2024
+152,dhruvag2000,dhruvag2000: @JKridner iiuc you want something like our IRC chat logs but for discord?,@JKridner iiuc you want something like our IRC chat logs but for discord?,[],general,gsoc,2023-2024
+153,dhruvag2000,dhruvag2000: Somewhere externally hosted logs that any non discord user can just go and read passively?,Somewhere externally hosted logs that any non discord user can just go and read passively?,[],general,gsoc,2023-2024
+154,jkridner,jkridner: yes!,yes!,[],general,gsoc,2023-2024
+155,jkridner,jkridner: at least for this channel.,at least for this channel.,[],general,gsoc,2023-2024
+156,melta101,"melta101: https://discord.com/developers/docs/resources/audit-log#:~:text=Viewing%20audit%20logs%20requires%20the,are%20stored%20for%2045%20days.","https://discord.com/developers/docs/resources/audit-log#:~:text=Viewing%20audit%20logs%20requires%20the,are%20stored%20for%2045%20days.","['https://discord.com/developers/docs/resources/audit-log#:~:text=Viewing%20audit%20logs%20requires%20the,are%20stored%20for%2045%20days.']",general,gsoc,2023-2024
+157,melta101,melta101: Audit log has param to add set of users,Audit log has param to add set of users,[],general,gsoc,2023-2024
+158,dhruvag2000,"dhruvag2000: I find some browser extensions and stuff for this
+https://chrome.google.com/webstore/detail/discord-chat-exporter-bac/lljknccjfgeihgdboidlkoofdknieffm
+But idk how to push to some online server @JKridner","I find some browser extensions and stuff for this
+https://chrome.google.com/webstore/detail/discord-chat-exporter-bac/lljknccjfgeihgdboidlkoofdknieffm
+But idk how to push to some online server @JKridner",['https://chrome.google.com/webstore/detail/discord-chat-exporter-bac/lljknccjfgeihgdboidlkoofdknieffm'],general,gsoc,2023-2024
+159,jkridner,jkridner: 😦,😦,[],general,gsoc,2023-2024
+160,jkridner,jkridner: I hate discord,I hate discord,[],general,gsoc,2023-2024
+161,jkridner,jkridner: Almost as much as I hate slack.,Almost as much as I hate slack.,[],general,gsoc,2023-2024
+162,unknown,GSoC Forum Bot: ,GSoC Forum Bot:,[],gsoc_planning,gsoc,2023-2024
+163,unknown,GSoC Forum Bot: ,GSoC Forum Bot:,[],gsoc_planning,gsoc,2023-2024
+164,jkridner,jkridner: I'm nearing burnout for the day already. Trying to get the GSoC stuff setup is a nightmare and I seem to have no help.,I'm nearing burnout for the day already. Trying to get the GSoC stuff setup is a nightmare and I seem to have no help.,[],gsoc_planning,gsoc,2023-2024
+165,melta101,"melta101: If there is anything I can help
+I can offer you any help","If there is anything I can help
+I can offer you any help",[],general,gsoc,2023-2024
+166,jkridner,jkridner: @lorforlinux can I get updates to https://forum.beagleboard.org/t/gsoc-ideas/35850#general-requirements-5 for a Zephyr-based requirement?,@lorforlinux can I get updates to https://forum.beagleboard.org/t/gsoc-ideas/35850#general-requirements-5 for a Zephyr-based requirement?,['https://forum.beagleboard.org/t/gsoc-ideas/35850#general-requirements-5'],gsoc_planning,gsoc,2023-2024
+167,jkridner,jkridner: @melta101 please review all the info I post and let me know if there are confusing gaps.,@melta101 please review all the info I post and let me know if there are confusing gaps.,[],general,gsoc,2023-2024
+168,unknown,GSoC Forum Bot: ,GSoC Forum Bot:,[],gsoc_planning,gsoc,2023-2024
+169,unknown,GSoC Forum Bot: ,GSoC Forum Bot:,[],gsoc_planning,gsoc,2023-2024
+170,melta101,"melta101: @JKridner could you pin the proposal template
+rest all seems fine","@JKridner could you pin the proposal template
+rest all seems fine",[],gsoc_planning,gsoc,2023-2024
+171,unknown,GSoC Forum Bot: ,GSoC Forum Bot:,[],gsoc_planning,gsoc,2023-2024
+172,unknown,GSoC Forum Bot: ,GSoC Forum Bot:,[],gsoc_planning,gsoc,2023-2024
+173,unknown,GSoC Forum Bot: ,GSoC Forum Bot:,[],gsoc_planning,gsoc,2023-2024
+174,unknown,GSoC Forum Bot: ,GSoC Forum Bot:,[],gsoc_planning,gsoc,2023-2024
+175,jkridner,jkridner: @lorforlinux are you working on this today. I really want to put our application in.,@lorforlinux are you working on this today. I really want to put our application in.,[],general,gsoc,2023-2024
+176,unknown,GSoC Forum Bot: ,GSoC Forum Bot:,[],gsoc_planning,gsoc,2023-2024
+177,unknown,GSoC Forum Bot: ,GSoC Forum Bot:,[],gsoc_planning,gsoc,2023-2024
+178,andrearosetti,"andrearosetti: Hello, I am a 3rd year electronic engineering student at Politecnico di Milano, Italy. I would like to participate to GSoC 2024. I don't know if I have the skills needed for it but I want to give it a try. How do I get started?","Hello, I am a 3rd year electronic engineering student at Politecnico di Milano, Italy. I would like to participate to GSoC 2024. I don't know if I have the skills needed for it but I want to give it a try. How do I get started?",[],gsoc_planning,gsoc,2023-2024
+179,dhruvag2000,"dhruvag2000: https://buff.ly/3SA0puF
+Wondering how much effort this would be on beagleplay or something?","https://buff.ly/3SA0puF
+Wondering how much effort this would be on beagleplay or something?",['https://buff.ly/3SA0puF'],general,gsoc,2023-2024
+180,unknown,GSoC Forum Bot: ,GSoC Forum Bot:,[],gsoc_planning,gsoc,2023-2024
+181,andrearosetti,"andrearosetti: Hi, can I contact you to have information on how to prepare for GSoC?","Hi, can I contact you to have information on how to prepare for GSoC?",[],gsoc_planning,gsoc,2023-2024
+182,jkridner,jkridner: This is where we connect! What questions do you have? Please don’t reach out privately—that isn’t how this works. We engage as a community. Feel free to mention me to get my attention.,This is where we connect! What questions do you have? Please don’t reach out privately—that isn’t how this works. We engage as a community. Feel free to mention me to get my attention.,[],general,gsoc,2023-2024
+183,jkridner,"jkridner: @lorforlinux this connection doesn’t seem as easy for ideas on gsoc.beagleboard.io and those are out of date. I am fine to put proposals there, but let’s stick to moving the ideas to the forum. We can link and organize on gsoc.beagleboard.io, but they should live on the forum.","@lorforlinux this connection doesn’t seem as easy for ideas on gsoc.beagleboard.io and those are out of date. I am fine to put proposals there, but let’s stick to moving the ideas to the forum. We can link and organize on gsoc.beagleboard.io, but they should live on the forum.",[],gsoc_planning,gsoc,2023-2024
+184,andrearosetti,"andrearosetti: @JKridner thank you, I wasn't sure on how this works. Sorry for the following naive questions, I am a total beginner. So, I understand the first thing to do is looking for ideas on the forum, doing some research and trying to expand them into proposals. How do I know if they are not already being taken? Do they all require experience with Linux? In that case, what in particular?","@JKridner thank you, I wasn't sure on how this works. Sorry for the following naive questions, I am a total beginner. So, I understand the first thing to do is looking for ideas on the forum, doing some research and trying to expand them into proposals. How do I know if they are not already being taken? Do they all require experience with Linux? In that case, what in particular?",[],gsoc_planning,gsoc,2023-2024
+185,jkridner,jkridner: no problem. i’ll just give frank answers. total beginners welcome.,no problem. i’ll just give frank answers. total beginners welcome.,[],general,gsoc,2023-2024
+186,jkridner,jkridner: doesn’t matter if an idea is taken. what matters is how you connect with that idea. selection is based on proposal quality and community engagement.,doesn’t matter if an idea is taken. what matters is how you connect with that idea. selection is based on proposal quality and community engagement.,[],gsoc_planning,gsoc,2023-2024
+187,jkridner,"jkridner: Preexisting experience with Linux is not required, but likely needs to be developed.","Preexisting experience with Linux is not required, but likely needs to be developed.",[],general,gsoc,2023-2024
+188,lorforlinux,"lorforlinux: For sure, gsoc site has no way to chat thus forum is the best place for all the discussion.","For sure, gsoc site has no way to chat thus forum is the best place for all the discussion.",[],gsoc_planning,gsoc,2023-2024
+189,lorforlinux,lorforlinux: @JKridner Sorry missed your message. did you submit our application?,@JKridner Sorry missed your message. did you submit our application?,[],general,gsoc,2023-2024
+190,lorforlinux,lorforlinux: @here New GSoC site: https://gsoc.beagleboard.io/,@here New GSoC site: https://gsoc.beagleboard.io/,['https://gsoc.beagleboard.io/'],gsoc_planning,gsoc,2023-2024
+191,lorforlinux,lorforlinux: We will be sharing a proposal template and guide to easily create a proposal on the new site. For discussion on ideas please visit https://forum.beagleboard.org/,We will be sharing a proposal template and guide to easily create a proposal on the new site. For discussion on ideas please visit https://forum.beagleboard.org/,['https://forum.beagleboard.org/'],gsoc_planning,gsoc,2023-2024
+192,ayush1325,ayush1325: Looks amazing. Really liking the new theme.,Looks amazing. Really liking the new theme.,[],general,gsoc,2023-2024
+193,jkridner,jkridner: ,,[],general,gsoc,2023-2024
+194,jkridner,"jkridner: oops, wrong channel.","oops, wrong channel.",[],general,gsoc,2023-2024
+195,melta101,melta101: @lorforlinux we could add a list of mentors with their discord or forum nametag in the new site,@lorforlinux we could add a list of mentors with their discord or forum nametag in the new site,[],gsoc_planning,gsoc,2023-2024
+196,dhruvag2000,dhruvag2000: Indeed I do too,Indeed I do too,[],general,gsoc,2023-2024
+197,unknown,GSoC Forum Bot: ,GSoC Forum Bot:,[],gsoc_planning,gsoc,2023-2024
+198,gagana0385,"gagana0385: yes please, that would be helpful. I am very much interested in one of the project ( RISC-V Based PRU on FPGA) and want to get in touch with the mentors for more guidance.","yes please, that would be helpful. I am very much interested in one of the project ( RISC-V Based PRU on FPGA) and want to get in touch with the mentors for more guidance.",[],gsoc_planning,gsoc,2023-2024
+199,unknown,GSoC Forum Bot: ,GSoC Forum Bot:,[],gsoc_planning,gsoc,2023-2024
+200,unknown,GSoC Forum Bot: ,GSoC Forum Bot:,[],gsoc_planning,gsoc,2023-2024
+201,unknown,GSoC Forum Bot: ,GSoC Forum Bot:,[],gsoc_planning,gsoc,2023-2024
+202,unknown,GSoC Forum Bot: ,GSoC Forum Bot:,[],gsoc_planning,gsoc,2023-2024
+203,jkridner,jkridner: I suggest initially engaging mentors on the forum and then moving interactive discussions here on Discord.,I suggest initially engaging mentors on the forum and then moving interactive discussions here on Discord.,[],gsoc_planning,gsoc,2023-2024
+204,jkridner,"jkridner: My guidance is to have each idea point to a wiki-style topic on the forum and then have that idea list forum usernames. Once connected on the forum, discussions can continue here.","My guidance is to have each idea point to a wiki-style topic on the forum and then have that idea list forum usernames. Once connected on the forum, discussions can continue here.",[],gsoc_planning,gsoc,2023-2024
+205,melta101,"melta101: Oh, got it!
+Yea, that would be better.","Oh, got it!
+Yea, that would be better.",[],general,gsoc,2023-2024
+206,jkridner,jkridner: @lorforlinux https://www.beagleboard.org/gsocmeet,@lorforlinux https://www.beagleboard.org/gsocmeet,['https://www.beagleboard.org/gsocmeet'],gsoc_planning,gsoc,2023-2024
+207,jkridner,jkridner: Wordpress is a pain.,Wordpress is a pain.,[],general,gsoc,2023-2024
+208,jkridner,jkridner: table looks awful.,table looks awful.,[],general,gsoc,2023-2024
+209,jkridner,jkridner: I want to host the ICS on https://gsoc.beagleboard.io.,I want to host the ICS on https://gsoc.beagleboard.io.,['https://gsoc.beagleboard.io.'],gsoc_planning,gsoc,2023-2024
+210,jkridner,"jkridner: Please test https://bbb.io/gsocmeet, https://bbb.io/gsocideas, https://bbb.io/gsocml, https://bbb.io/gsoc, https://bbb.io/gsocchat.","Please test https://bbb.io/gsocmeet, https://bbb.io/gsocideas, https://bbb.io/gsocml, https://bbb.io/gsoc, https://bbb.io/gsocchat.","['https://bbb.io/gsocmeet,', 'https://bbb.io/gsocideas,', 'https://bbb.io/gsocml,', 'https://bbb.io/gsoc,', 'https://bbb.io/gsocchat.']",gsoc_planning,gsoc,2023-2024
+211,lorforlinux,lorforlinux: We can switch to list instead for now.,We can switch to list instead for now.,[],general,gsoc,2023-2024
+212,jkridner,"jkridner: oh, put it on the forum? ok. I can move it.","oh, put it on the forum? ok. I can move it.",[],general,gsoc,2023-2024
+213,jkridner,jkridner: @lorforlinux can we add meeting.ics to the pages as a binary file?,@lorforlinux can we add meeting.ics to the pages as a binary file?,[],general,gsoc,2023-2024
+214,lorforlinux,lorforlinux: It was just a suggestion to make the table look good on WordPress. We can definitely host ICS file via gsoc.beagleboard.io,It was just a suggestion to make the table look good on WordPress. We can definitely host ICS file via gsoc.beagleboard.io,[],gsoc_planning,gsoc,2023-2024
+215,lorforlinux,lorforlinux: I'll make that change and share here.,I'll make that change and share here.,[],general,gsoc,2023-2024
+216,lorforlinux,lorforlinux: @JKridner we can use :download: under a button that will allow us to download meeting.ics,@JKridner we can use :download: under a button that will allow us to download meeting.ics,[],general,gsoc,2023-2024
+217,lorforlinux,lorforlinux: Will that work?,Will that work?,[],general,gsoc,2023-2024
+218,melta101,"melta101: @lorforlinux i had some doubt related rtd-theme
+the button-link doesnt seem to hyperlink to a text if we assign a color or shadow to it","@lorforlinux i had some doubt related rtd-theme
+the button-link doesnt seem to hyperlink to a text if we assign a color or shadow to it",[],general,gsoc,2023-2024
+219,jkridner,"jkridner: you know what, the forum automatically generates an ICS!","you know what, the forum automatically generates an ICS!",[],general,gsoc,2023-2024
+220,jkridner,jkridner: https://forum.beagleboard.org/t/gsoc-meeting/37278,https://forum.beagleboard.org/t/gsoc-meeting/37278,['https://forum.beagleboard.org/t/gsoc-meeting/37278'],gsoc_planning,gsoc,2023-2024
+221,unknown,GSoC Forum Bot: ,GSoC Forum Bot:,[],gsoc_planning,gsoc,2023-2024
+222,jkridner,jkridner: should check this ics: blob:https://forum.beagleboard.org/af310706-ed45-4117-8ba2-242715bedef3,should check this ics: blob:https://forum.beagleboard.org/af310706-ed45-4117-8ba2-242715bedef3,['https://forum.beagleboard.org/af310706-ed45-4117-8ba2-242715bedef3'],general,gsoc,2023-2024
+223,jkridner,jkridner: hmmm..... I don't see the reoccurance.,hmmm..... I don't see the reoccurance.,[],general,gsoc,2023-2024
+224,melta101,melta101: It shows as link doesn't exist or is private.,It shows as link doesn't exist or is private.,[],general,gsoc,2023-2024
+225,jkridner,jkridner: 😦,😦,[],general,gsoc,2023-2024
+226,jkridner,jkridner: guess you have to be on the page to download the ICS file. 😕,guess you have to be on the page to download the ICS file. 😕,[],general,gsoc,2023-2024
+227,jkridner,jkridner: it is unclear to me if the reoccurance is properly there.,it is unclear to me if the reoccurance is properly there.,[],general,gsoc,2023-2024
+228,melta101,melta101: Yep,Yep,[],general,gsoc,2023-2024
+229,melta101,"melta101: When I added it, it was for 1 instance
+Had to manually choose weekly after that.","When I added it, it was for 1 instance
+Had to manually choose weekly after that.",[],general,gsoc,2023-2024
+230,jkridner,jkridner: 😦,😦,[],general,gsoc,2023-2024
+231,unknown,GSoC Forum Bot: ,GSoC Forum Bot:,[],gsoc_planning,gsoc,2023-2024
+232,unknown,GSoC Forum Bot: ,GSoC Forum Bot:,[],gsoc_planning,gsoc,2023-2024
+233,unknown,GSoC Forum Bot: ,GSoC Forum Bot:,[],gsoc_planning,gsoc,2023-2024
+234,lorforlinux,"lorforlinux: @melta101 We are switching to pydata theme, rtd-theme is causing issues with installed extensions and current version of sphinx we are using.","@melta101 We are switching to pydata theme, rtd-theme is causing issues with installed extensions and current version of sphinx we are using.",[],general,gsoc,2023-2024
+235,melta101,"melta101: Right
+It has been breaking for me too.","Right
+It has been breaking for me too.",[],general,gsoc,2023-2024
+236,lorforlinux,lorforlinux: @JKridner Site not working.,@JKridner Site not working.,[],general,gsoc,2023-2024
+237,melta101,melta101: gsoc site shows 1 less project compared to elinux,gsoc site shows 1 less project compared to elinux,[],gsoc_planning,gsoc,2023-2024
+238,lorforlinux,lorforlinux: Maybe that student didn't go through,Maybe that student didn't go through,[],general,gsoc,2023-2024
+239,melta101,"melta101: for the archive 
+would you want details from both or only gsoc?","for the archive 
+would you want details from both or only gsoc?",[],gsoc_planning,gsoc,2023-2024
+240,lorforlinux,"lorforlinux: Both, if GSoC information is not available you can skip that part but keep what you see on elinux.","Both, if GSoC information is not available you can skip that part but keep what you see on elinux.",[],gsoc_planning,gsoc,2023-2024
+241,melta101,melta101: got it!,got it!,[],general,gsoc,2023-2024
+242,ayush1325,ayush1325: Why is there both a `main` and `master` branch : https://openbeagle.org/gsoc/gsoc.beagleboard.io ?,Why is there both a `main` and `master` branch : https://openbeagle.org/gsoc/gsoc.beagleboard.io ?,['https://openbeagle.org/gsoc/gsoc.beagleboard.io'],gsoc_planning,gsoc,2023-2024
+243,unknown,"mr.pandey_55161: Hi everyone I'm an ML Enthusiast and an Embedded Systems Explorer. In GSOC 2022, there was one project ""Running Machine Learning Models on Bela"" and in GSOC 2023 there was one project ""OpenGLES Acceleration for DL"". 
+Can we expect similar ML+Embedded projects for this year GSOC as well? @lorforlinux @JKridner please reply.","mr.pandey_55161: Hi everyone I'm an ML Enthusiast and an Embedded Systems Explorer. In GSOC 2022, there was one project ""Running Machine Learning Models on Bela"" and in GSOC 2023 there was one project ""OpenGLES Acceleration for DL"". 
+Can we expect similar ML+Embedded projects for this year GSOC as well? @lorforlinux @JKridner please reply.",[],gsoc_planning,gsoc,2023-2024
+244,lorforlinux,lorforlinux: @JKridner Please approve to delete the `master` branch.,@JKridner Please approve to delete the `master` branch.,[],general,gsoc,2023-2024
+245,lorforlinux,lorforlinux: I have already shifted protected branch status from `master` to `main` branch couple of days ago and on my fork I have deleted the `master` branch.,I have already shifted protected branch status from `master` to `main` branch couple of days ago and on my fork I have deleted the `master` branch.,[],general,gsoc,2023-2024
+246,lorforlinux,"lorforlinux: @Mr. Pandey Hey, you can explore the ideas and start a discussion on forum https://forum.beagleboard.org/c/gsoc/13","@Mr. Pandey Hey, you can explore the ideas and start a discussion on forum https://forum.beagleboard.org/c/gsoc/13",['https://forum.beagleboard.org/c/gsoc/13'],gsoc_planning,gsoc,2023-2024
+247,dhruvag2000,dhruvag2000: @Nishanth Menon @vaishnav  is upstreaming the remaining AI-64 zephyr support worthy of a gsoc project for this year? Let me know I'll create an entry on ideas page accordingly.,@Nishanth Menon @vaishnav  is upstreaming the remaining AI-64 zephyr support worthy of a gsoc project for this year? Let me know I'll create an entry on ideas page accordingly.,[],gsoc_planning,gsoc,2023-2024
+248,unknown,GSoC Forum Bot: ,GSoC Forum Bot:,[],gsoc_planning,gsoc,2023-2024
+249,unknown,GSoC Forum Bot: ,GSoC Forum Bot:,[],gsoc_planning,gsoc,2023-2024
+250,nmenon,"nmenon: Yes, we will also need a project similar to UBoot what sumit is doing automatic Dt sync with kernel dt.","Yes, we will also need a project similar to UBoot what sumit is doing automatic Dt sync with kernel dt.",[],kernel_dev,gsoc,2023-2024
+251,dhruvag2000,"dhruvag2000: I think for that to be even possible, we have wider issues to tackle in zephyr? I don't think any DT as is or even close to as is in kernel or uboot would work in zephyr?
+I think for starters we can have a POC project to show what effort is needed and how kernel DTs can be synced with zephyr.
+Basically your LPC talk, but now in the form of a PR 😉","I think for that to be even possible, we have wider issues to tackle in zephyr? I don't think any DT as is or even close to as is in kernel or uboot would work in zephyr?
+I think for starters we can have a POC project to show what effort is needed and how kernel DTs can be synced with zephyr.
+Basically your LPC talk, but now in the form of a PR 😉",[],kernel_dev,gsoc,2023-2024
+252,nmenon,nmenon: Yup,Yup,[],general,gsoc,2023-2024
+253,unknown,GSoC Forum Bot: ,GSoC Forum Bot:,[],gsoc_planning,gsoc,2023-2024
+254,dhruvag2000,"dhruvag2000: that's prbably more of a ""zephyr"" GSOC not Beagleboard. Let me see if I can reach out to someone from LFX in that case","that's prbably more of a ""zephyr"" GSOC not Beagleboard. Let me see if I can reach out to someone from LFX in that case",[],gsoc_planning,gsoc,2023-2024
+255,nmenon,nmenon: Could be contribution by beagle being the first platform to do that.,Could be contribution by beagle being the first platform to do that.,[],general,gsoc,2023-2024
+256,dhruvag2000,"dhruvag2000: https://forum.beagleboard.org/t/zephyr-dt-sync-with-kernel-dt/37295
+Placeholder created","https://forum.beagleboard.org/t/zephyr-dt-sync-with-kernel-dt/37295
+Placeholder created",['https://forum.beagleboard.org/t/zephyr-dt-sync-with-kernel-dt/37295'],kernel_dev,gsoc,2023-2024
+257,unknown,GSoC Forum Bot: ,GSoC Forum Bot:,[],gsoc_planning,gsoc,2023-2024
+258,unknown,GSoC Forum Bot: ,GSoC Forum Bot:,[],gsoc_planning,gsoc,2023-2024
+259,unknown,GSoC Forum Bot: ,GSoC Forum Bot:,[],gsoc_planning,gsoc,2023-2024
+260,unknown,GSoC Forum Bot: ,GSoC Forum Bot:,[],gsoc_planning,gsoc,2023-2024
+261,cfriedt,"cfriedt: Sorry for the fly-by, but this person seems to really want to do GSoC in Zephyr - in case Beagle wants some additional help and would like to mentor someone again this year.
+https://discord.com/channels/720317445772017664/952352276419321907/1204705687062446107","Sorry for the fly-by, but this person seems to really want to do GSoC in Zephyr - in case Beagle wants some additional help and would like to mentor someone again this year.
+https://discord.com/channels/720317445772017664/952352276419321907/1204705687062446107",['https://discord.com/channels/720317445772017664/952352276419321907/1204705687062446107'],kernel_dev,gsoc,2023-2024
+262,unknown,GSoC Forum Bot: ,GSoC Forum Bot:,[],gsoc_planning,gsoc,2023-2024
+263,unknown,GSoC Forum Bot: ,GSoC Forum Bot:,[],gsoc_planning,gsoc,2023-2024
+264,unknown,GSoC Forum Bot: ,GSoC Forum Bot:,[],gsoc_planning,gsoc,2023-2024
+265,unknown,GSoC Forum Bot: ,GSoC Forum Bot:,[],gsoc_planning,gsoc,2023-2024
+266,unknown,GSoC Forum Bot: ,GSoC Forum Bot:,[],gsoc_planning,gsoc,2023-2024
+267,unknown,GSoC Forum Bot: ,GSoC Forum Bot:,[],gsoc_planning,gsoc,2023-2024
+268,unknown,GSoC Forum Bot: ,GSoC Forum Bot:,[],gsoc_planning,gsoc,2023-2024
+269,unknown,GSoC Forum Bot: ,GSoC Forum Bot:,[],gsoc_planning,gsoc,2023-2024
+270,unknown,GSoC Forum Bot: ,GSoC Forum Bot:,[],gsoc_planning,gsoc,2023-2024
+271,anujdeshpande,"anujdeshpande: @cfriedt there's some GSoC ideas around zephyr being discussed here - https://forum.beagleboard.org/tags/c/gsoc/13/gsoc-ideas
+Should we ask the student to check those out?","@cfriedt there's some GSoC ideas around zephyr being discussed here - https://forum.beagleboard.org/tags/c/gsoc/13/gsoc-ideas
+Should we ask the student to check those out?",['https://forum.beagleboard.org/tags/c/gsoc/13/gsoc-ideas'],kernel_dev,gsoc,2023-2024
+272,unknown,GSoC Forum Bot: ,GSoC Forum Bot:,[],gsoc_planning,gsoc,2023-2024
+273,jkridner,jkridner: Hi all. Welcome to 2024 GSoC.... our application to be a mentoring organization has been submitted and lots of work has gone into https://bbb.io/gsoc.,Hi all. Welcome to 2024 GSoC.... our application to be a mentoring organization has been submitted and lots of work has gone into https://bbb.io/gsoc.,['https://bbb.io/gsoc.'],gsoc_planning,gsoc,2023-2024
+274,jkridner,jkridner: @lorforlinux can we merge in the latest merge requests?,@lorforlinux can we merge in the latest merge requests?,[],general,gsoc,2023-2024
+275,lorforlinux,"lorforlinux: @JKridner Yes please, let's do that.","@JKridner Yes please, let's do that.",[],general,gsoc,2023-2024
+276,jkridner,jkridner: Seems I am connected on the voice channel... frightening.,Seems I am connected on the voice channel... frightening.,[],general,gsoc,2023-2024
+277,jkridner,jkridner: Have I mentioned I hate Discord? 😄,Have I mentioned I hate Discord? 😄,[],general,gsoc,2023-2024
+278,jkridner,"jkridner: ah, nice. all merged.","ah, nice. all merged.",[],general,gsoc,2023-2024
+279,lorforlinux,"lorforlinux: And it's not easy to exit if you are new to Discord, happens with me often.","And it's not easy to exit if you are new to Discord, happens with me often.",[],general,gsoc,2023-2024
+280,jkridner,"jkridner: yeah, people just spying on you all the time. 😄","yeah, people just spying on you all the time. 😄",[],general,gsoc,2023-2024
+281,jkridner,jkridner: we should probably do some kind of minutes on the forum.,we should probably do some kind of minutes on the forum.,[],general,gsoc,2023-2024
+282,lorforlinux,lorforlinux: @JKridner,@JKridner,[],general,gsoc,2023-2024
+283,jkridner,"jkridner: Action:
+* Add other GSoC dates to the calendar
+* 1-wide video for past projects, but add to navigation headers","Action:
+* Add other GSoC dates to the calendar
+* 1-wide video for past projects, but add to navigation headers",[],gsoc_planning,gsoc,2023-2024
+284,unknown,GSoC Forum Bot: ,GSoC Forum Bot:,[],gsoc_planning,gsoc,2023-2024
+285,jkridner,jkridner: @av500 going to be at all engaged with GSoC this year?,@av500 going to be at all engaged with GSoC this year?,[],gsoc_planning,gsoc,2023-2024
+286,unknown,GSoC Forum Bot: ,GSoC Forum Bot:,[],gsoc_planning,gsoc,2023-2024
+287,unknown,GSoC Forum Bot: ,GSoC Forum Bot:,[],gsoc_planning,gsoc,2023-2024
+288,lorforlinux,lorforlinux: @melta101 We can add couple of nice videos on index page of past proposals sections.,@melta101 We can add couple of nice videos on index page of past proposals sections.,[],gsoc_planning,gsoc,2023-2024
+289,melta101,"melta101: yea,
+ill curate and submit a pr","yea,
+ill curate and submit a pr",[],general,gsoc,2023-2024
+290,lorforlinux,lorforlinux: And for all the projects we can just have a red YouTube button beside elinux & gsoc archive button.,And for all the projects we can just have a red YouTube button beside elinux & gsoc archive button.,[],gsoc_planning,gsoc,2023-2024
+291,lorforlinux,"lorforlinux: Thanks, looking forward to that.","Thanks, looking forward to that.",[],general,gsoc,2023-2024
+292,melta101,"melta101: so the layout should  be something like this?
+name: 
+desc       link
+                link
+               link","so the layout should  be something like this?
+name: 
+desc       link
+                link
+               link",[],general,gsoc,2023-2024
+293,lorforlinux,lorforlinux: Let me quickly create a template for you.,Let me quickly create a template for you.,[],general,gsoc,2023-2024
+294,melta101,melta101: sure!,sure!,[],general,gsoc,2023-2024
+295,melta101,"melta101: @lorforlinux u can just give a rough sketch
+ill work upon that","@lorforlinux u can just give a rough sketch
+ill work upon that",[],general,gsoc,2023-2024
+296,lorforlinux,lorforlinux: ,,[],general,gsoc,2023-2024
+297,lorforlinux,"lorforlinux: Commit: https://openbeagle.org/lorforlinux/gsoc.beagleboard.io/-/commit/fa6d5886e247077304b048ade8da666276a7bda3
+Rendered: https://gsoc-beagleboard-io-lorforlinux-b3ddd8320713fed9f44bfaf1cb8045d.beagleboard.io/projects/2010.html#gsoc-2010-projects","Commit: https://openbeagle.org/lorforlinux/gsoc.beagleboard.io/-/commit/fa6d5886e247077304b048ade8da666276a7bda3
+Rendered: https://gsoc-beagleboard-io-lorforlinux-b3ddd8320713fed9f44bfaf1cb8045d.beagleboard.io/projects/2010.html#gsoc-2010-projects","['https://openbeagle.org/lorforlinux/gsoc.beagleboard.io/-/commit/fa6d5886e247077304b048ade8da666276a7bda3', 'https://gsoc-beagleboard-io-lorforlinux-b3ddd8320713fed9f44bfaf1cb8045d.beagleboard.io/projects/2010.html#gsoc-2010-projects']",gsoc_planning,gsoc,2023-2024
+298,lorforlinux,lorforlinux: @melta101 let me know if you had a different layout in mind.,@melta101 let me know if you had a different layout in mind.,[],general,gsoc,2023-2024
+299,lorforlinux,lorforlinux: @JKridner Please confirm if this layout is good to go.,@JKridner Please confirm if this layout is good to go.,[],general,gsoc,2023-2024
+300,lorforlinux,lorforlinux: *eLinux,*eLinux,[],general,gsoc,2023-2024
+301,melta101,melta101: Looks good,Looks good,[],general,gsoc,2023-2024
+302,melta101,melta101: We may need to change some description as some of them are very long paragraphs,We may need to change some description as some of them are very long paragraphs,[],general,gsoc,2023-2024
+303,lorforlinux,"lorforlinux: Yes, sounds like a plan!","Yes, sounds like a plan!",[],general,gsoc,2023-2024
+304,jkridner,jkridner: Playlist might be good.,Playlist might be good.,[],general,gsoc,2023-2024
+305,jkridner,jkridner: I’d just use the term “Proposal” and let it link to whatever tool we used for the proposal.,I’d just use the term “Proposal” and let it link to whatever tool we used for the proposal.,[],gsoc_planning,gsoc,2023-2024
+306,jkridner,"jkridner: otherwise, I like the layout.","otherwise, I like the layout.",[],general,gsoc,2023-2024
+307,jkridner,"jkridner: er, but I like the video thumbnails.","er, but I like the video thumbnails.",[],general,gsoc,2023-2024
+308,jkridner,jkridner: they break up all the text,they break up all the text,[],general,gsoc,2023-2024
+309,jkridner,jkridner: @lorforlinux just showed to @ChristiLong and we should bring back the video thumbnail.,@lorforlinux just showed to @ChristiLong and we should bring back the video thumbnail.,[],general,gsoc,2023-2024
+310,melta101,"melta101: how about having the description on the left and video on the right 
+because some of the projects don't have a videos","how about having the description on the left and video on the right 
+because some of the projects don't have a videos",[],general,gsoc,2023-2024
+311,lorforlinux,"lorforlinux: Okie, let's do that.","Okie, let's do that.",[],general,gsoc,2023-2024
+312,lorforlinux,lorforlinux: We can try but It may look uneven.,We can try but It may look uneven.,[],general,gsoc,2023-2024
+313,melta101,melta101: The main issue is some projects don't have a video,The main issue is some projects don't have a video,[],general,gsoc,2023-2024
+314,lorforlinux,lorforlinux: That's okay,That's okay,[],general,gsoc,2023-2024
+315,melta101,melta101: okay,okay,[],general,gsoc,2023-2024
+316,unknown,"aryannanda.: Hi everyone,
+I am Aryan Nanda a sophomore pursuing a bachelor’s degree of Computer Science at VJTI, Mumbai . I have worked on building a gesture controlled navigation from scratch where I learnt a lot about Deep Learning, Computer Vision and the YOLO algorithm. I have also worked with embedded systems and the ESP microcontroller.
+I am very interested in the last year's project *""YOLO models on the X15/AI-64""* , where the goal is to reduce the inference time of the ARM processor to 1 second or le","aryannanda.: Hi everyone,
+I am Aryan Nanda a sophomore pursuing a bachelor’s degree of Computer Science at VJTI, Mumbai . I have worked on building a gesture controlled navigation from scratch where I learnt a lot about Deep Learning, Computer Vision and the YOLO algorithm. I have also worked with embedded systems and the ESP microcontroller.
+I am very interested in the last year's project *""YOLO models on the X15/AI-64""* , where the goal is to reduce the inference time of the ARM processor to 1 second or le",[],general,gsoc,2023-2024
+317,suraj0215,"suraj0215: Hello BeagleBoard Community! I am Suraj Sonawane, a pre-final year undergraduate student of ECE Engineering from VJTI, Mumbai. I have a decent exposure to Embedded Systems and Real-Time Operating Systems. I'm excited to participate in GSoC, focusing on **Upstream Zephyr Support on BBAI-64 R5** project. I'm looking forward to connecting with fellow enthusiasts and learning more! 
+Could you please guide me on how to get started?","Hello BeagleBoard Community! I am Suraj Sonawane, a pre-final year undergraduate student of ECE Engineering from VJTI, Mumbai. I have a decent exposure to Embedded Systems and Real-Time Operating Systems. I'm excited to participate in GSoC, focusing on **Upstream Zephyr Support on BBAI-64 R5** project. I'm looking forward to connecting with fellow enthusiasts and learning more! 
+Could you please guide me on how to get started?",[],gsoc_planning,gsoc,2023-2024
+318,dhruvag2000,"dhruvag2000: Hello @Suraj Sonawane !
+You can take a look at the work done last year project on add zephyr support for BBAI64
+https://elinux.org/BeagleBoard/GSoC/2023_Proposal/PrashanthS
+This was last year's proposal","Hello @Suraj Sonawane !
+You can take a look at the work done last year project on add zephyr support for BBAI64
+https://elinux.org/BeagleBoard/GSoC/2023_Proposal/PrashanthS
+This was last year's proposal",['https://elinux.org/BeagleBoard/GSoC/2023_Proposal/PrashanthS'],gsoc_planning,gsoc,2023-2024
+319,dhruvag2000,dhruvag2000: You can check for the PRs created by Prashanth last year,You can check for the PRs created by Prashanth last year,[],general,gsoc,2023-2024
+320,suraj0215,suraj0215: Thank you! I'll look at this to better understand the project and get started.,Thank you! I'll look at this to better understand the project and get started.,[],general,gsoc,2023-2024
+321,fishes1200,"fishes1200: @Suraj Sonawane 
+Gist page: https://gist.github.com/slpp95prashanth/4f09493037d564d54e9de331ee24377e","@Suraj Sonawane 
+Gist page: https://gist.github.com/slpp95prashanth/4f09493037d564d54e9de331ee24377e",['https://gist.github.com/slpp95prashanth/4f09493037d564d54e9de331ee24377e'],general,gsoc,2023-2024
+322,athern27,"athern27: Hello everyone,
+My name is Kartik Khandelwal,a third year undergraduate student of EC Engineering from LNMIIT, Jaipur. I am currently studying embedded systems and I have also worked on deploying computer vision models on Arduino Nano BLE 33. I am also quite comfortable working on projects related to yocto. I'm excited to participate in GSOC and connecting with fellow enthusiasts.
+Could you please guide me on how to get started?","Hello everyone,
+My name is Kartik Khandelwal,a third year undergraduate student of EC Engineering from LNMIIT, Jaipur. I am currently studying embedded systems and I have also worked on deploying computer vision models on Arduino Nano BLE 33. I am also quite comfortable working on projects related to yocto. I'm excited to participate in GSOC and connecting with fellow enthusiasts.
+Could you please guide me on how to get started?",[],gsoc_planning,gsoc,2023-2024
+323,suraj0215,suraj0215: Thank you!,Thank you!,[],general,gsoc,2023-2024
+324,melta101,"melta101: @lorforlinux 
+Remember, during the meeting
+I told that  the sidebars take up a lot of space
+https://pydata-sphinx-theme.readthedocs.io/en/stable/user_guide/layout.html
+it is possible to dynamically change the size of the article_container","@lorforlinux 
+Remember, during the meeting
+I told that  the sidebars take up a lot of space
+https://pydata-sphinx-theme.readthedocs.io/en/stable/user_guide/layout.html
+it is possible to dynamically change the size of the article_container",['https://pydata-sphinx-theme.readthedocs.io/en/stable/user_guide/layout.html'],kernel_dev,gsoc,2023-2024
+325,lorforlinux,"lorforlinux: @melta101 This does not resolve our issue, we can increase the width `article content`  can use if primary and secondary sidebars are not available. If the sidebars are visible on any page then this doesn't work.","@melta101 This does not resolve our issue, we can increase the width `article content`  can use if primary and secondary sidebars are not available. If the sidebars are visible on any page then this doesn't work.",[],kernel_dev,gsoc,2023-2024
+326,lorforlinux,lorforlinux: Without additional CSS,Without additional CSS,[],general,gsoc,2023-2024
+327,lorforlinux,lorforlinux: With additional CSS,With additional CSS,[],general,gsoc,2023-2024
+328,melta101,"melta101: ahh
+got it","ahh
+got it",[],general,gsoc,2023-2024
+329,jkridner,"jkridner: Welcome! Personally, I’m looking at a different ML project based on removing commercials. I will try to post to the forum today and see what interest it generates.","Welcome! Personally, I’m looking at a different ML project based on removing commercials. I will try to post to the forum today and see what interest it generates.",[],general,gsoc,2023-2024
+330,jkridner,jkridner: Welcome!! Did you go to https://bbb.io/gsoc ?,Welcome!! Did you go to https://bbb.io/gsoc ?,['https://bbb.io/gsoc'],gsoc_planning,gsoc,2023-2024
+331,unknown,GSoC Forum Bot: ,GSoC Forum Bot:,[],gsoc_planning,gsoc,2023-2024
+332,unknown,GSoC Forum Bot: ,GSoC Forum Bot:,[],gsoc_planning,gsoc,2023-2024
+333,unknown,GSoC Forum Bot: ,GSoC Forum Bot:,[],gsoc_planning,gsoc,2023-2024
+334,the_mihir_gore,"the_mihir_gore: Hello everyone. I am Mihir Gore, a sophomore at VJTI,Mumbai pursuing ECE bachelor's degree. I have worked on a cryptocurrency price forecasting project, and a gesture controlled navigation project, wherein I have learnt and implemented Deep Learning, CNNs, RNNs, Computer Vision, RandomForestRegression and Yolo Models. I have also worked on embedded systems like esp32. I am keenly interested to work and contribute on ideas involving these domains.","Hello everyone. I am Mihir Gore, a sophomore at VJTI,Mumbai pursuing ECE bachelor's degree. I have worked on a cryptocurrency price forecasting project, and a gesture controlled navigation project, wherein I have learnt and implemented Deep Learning, CNNs, RNNs, Computer Vision, RandomForestRegression and Yolo Models. I have also worked on embedded systems like esp32. I am keenly interested to work and contribute on ideas involving these domains.",[],gsoc_planning,gsoc,2023-2024
+335,jkridner,jkridner: I think complexity isn't desired by GSoC administrators. I've removed from my branch.,I think complexity isn't desired by GSoC administrators. I've removed from my branch.,[],gsoc_planning,gsoc,2023-2024
+336,jkridner,jkridner: @Mihir Gore did you look over https://bbb.io/gsocideas and https://bbb.io/gsocml for ideas related to your experience?,@Mihir Gore did you look over https://bbb.io/gsocideas and https://bbb.io/gsocml for ideas related to your experience?,"['https://bbb.io/gsocideas', 'https://bbb.io/gsocml']",gsoc_planning,gsoc,2023-2024
+337,jkridner,"jkridner: I think the more discussion an idea gets on the forum, the more likely it'll be promoted to https://bbb.io/gsocideas","I think the more discussion an idea gets on the forum, the more likely it'll be promoted to https://bbb.io/gsocideas",['https://bbb.io/gsocideas'],gsoc_planning,gsoc,2023-2024
+338,i_adarsh4,"i_adarsh4: I am adarsh from india, and I know python and ai .. I want to contribute in github what the repo and url how can I contribute..","I am adarsh from india, and I know python and ai .. I want to contribute in github what the repo and url how can I contribute..",[],general,gsoc,2023-2024
+339,unknown,GSoC Forum Bot: ,GSoC Forum Bot:,[],gsoc_planning,gsoc,2023-2024
+340,techgeek3,techgeek3: This seems like a really interesting idea. I have some prior ml experience. Can we expect some more ML ideas on beagleboard for Gsoc 2024?,This seems like a really interesting idea. I have some prior ml experience. Can we expect some more ML ideas on beagleboard for Gsoc 2024?,[],gsoc_planning,gsoc,2023-2024
+341,unknowncosmo,"unknowncosmo: Hello everyone, my name is Sam and I am currently pursuing a bachelor's degree in Computer Engineering at the University of British Columbia. My engineering design team actually used a BeagleBone Black on our previous project and that's how I found out about GSoC too. My current experience is mostly in C and Linux which stems from my internships in firmware, however I am interested in even lower levels and would like to expand my Verilog and digital logic design experience over a longer term.
+C","Hello everyone, my name is Sam and I am currently pursuing a bachelor's degree in Computer Engineering at the University of British Columbia. My engineering design team actually used a BeagleBone Black on our previous project and that's how I found out about GSoC too. My current experience is mostly in C and Linux which stems from my internships in firmware, however I am interested in even lower levels and would like to expand my Verilog and digital logic design experience over a longer term.
+C",[],gsoc_planning,gsoc,2023-2024
+342,darsh1193,"darsh1193: The page mentions the 2024 student application.... on the main gsoc page, they mentioned student or an open source beginner...
+I wanted to know if btech grads are eligible for the beagle internship. And if yes is there anything extra expected out of them?","The page mentions the 2024 student application.... on the main gsoc page, they mentioned student or an open source beginner...
+I wanted to know if btech grads are eligible for the beagle internship. And if yes is there anything extra expected out of them?",[],gsoc_planning,gsoc,2023-2024
+343,dhruvag2000,"dhruvag2000: Yes absolutely BTech grads are eligible, and nothing ""extra"" is expected, same set of selection criteria applies to all.","Yes absolutely BTech grads are eligible, and nothing ""extra"" is expected, same set of selection criteria applies to all.",[],general,gsoc,2023-2024
+344,dhruvag2000,dhruvag2000: Read more about the program here: https://developers.google.com/open-source/gsoc/faq,Read more about the program here: https://developers.google.com/open-source/gsoc/faq,['https://developers.google.com/open-source/gsoc/faq'],gsoc_planning,gsoc,2023-2024
+345,darsh1193,darsh1193: Thanks..,Thanks..,[],general,gsoc,2023-2024
+346,jkridner,jkridner: hi all!,hi all!,[],general,gsoc,2023-2024
+347,jkridner,jkridner: Thanks @unknowncosmo ! I think we are trying to get some additional prerequisites to help aide in preparation.,Thanks @unknowncosmo ! I think we are trying to get some additional prerequisites to help aide in preparation.,[],general,gsoc,2023-2024
+348,jkridner,jkridner: It would be good if we could remove the github-based cross-compilation requirement and give something more practical with Zephyr or Linux.,It would be good if we could remove the github-based cross-compilation requirement and give something more practical with Zephyr or Linux.,[],zephyr,gsoc,2023-2024
+349,jkridner,jkridner: I've suggested a kernel module in the past.,I've suggested a kernel module in the past.,[],kernel_dev,gsoc,2023-2024
+350,jkridner,jkridner: I think using CI is more important than being able to cross-compile on your own machine these days.,I think using CI is more important than being able to cross-compile on your own machine these days.,[],general,gsoc,2023-2024
+351,jkridner,"jkridner: not that I like Docker, but it is a way of working for contemporary development.","not that I like Docker, but it is a way of working for contemporary development.",[],general,gsoc,2023-2024
+352,jkridner,jkridner: it allows us to simply avoid the issue of our inability to create definitive programming environment definitions.,it allows us to simply avoid the issue of our inability to create definitive programming environment definitions.,[],general,gsoc,2023-2024
+353,lorforlinux,"lorforlinux: Hello everyone, GSoC weekly voice meeting invite: https://discord.gg/hXvtwhre","Hello everyone, GSoC weekly voice meeting invite: https://discord.gg/hXvtwhre",['https://discord.gg/hXvtwhre'],gsoc_planning,gsoc,2023-2024
+354,jkridner,jkridner: yuck. 😦,yuck. 😦,[],general,gsoc,2023-2024
+355,lorforlinux,lorforlinux: @JKridner Are we keeping things chat only?,@JKridner Are we keeping things chat only?,[],general,gsoc,2023-2024
+356,jkridner,"jkridner: @ChatGPT , what do you know about BeagleBoard.org Google Summer of Code internships?","@ChatGPT , what do you know about BeagleBoard.org Google Summer of Code internships?",[],general,gsoc,2023-2024
+357,jkridner,jkridner: No reason to disappear just because we disconnect from voice. 😄 I hope @melta101 @lorforlinux you are still around. Who else was on voice just now?,No reason to disappear just because we disconnect from voice. 😄 I hope @melta101 @lorforlinux you are still around. Who else was on voice just now?,[],general,gsoc,2023-2024
+358,melta101,"melta101: my bad,
+we thought the meeting ended.","my bad,
+we thought the meeting ended.",[],general,gsoc,2023-2024
+359,lorforlinux,"lorforlinux: I am here, going through the message log.","I am here, going through the message log.",[],general,gsoc,2023-2024
+360,jkridner,"jkridner: only the voice portion ended.... if you don't have anything to discuss, maybe it is ok to drop. I'm not sure what our agenda is for today. I have 1 agenda topic: what do we need to do to the site to make it compliant with Google's latest request.","only the voice portion ended.... if you don't have anything to discuss, maybe it is ok to drop. I'm not sure what our agenda is for today. I have 1 agenda topic: what do we need to do to the site to make it compliant with Google's latest request.",[],general,gsoc,2023-2024
+361,melta101,melta101: you mean like building the kernel or creating a patch?,you mean like building the kernel or creating a patch?,[],kernel_dev,gsoc,2023-2024
+362,melta101,melta101: or loading a kernel module?,or loading a kernel module?,[],kernel_dev,gsoc,2023-2024
+363,lorforlinux,lorforlinux: @melta101 It's related to a message we got from Google for updating our ideas.,@melta101 It's related to a message we got from Google for updating our ideas.,[],gsoc_planning,gsoc,2023-2024
+364,unknown,GSoC Forum Bot: ,GSoC Forum Bot:,[],gsoc_planning,gsoc,2023-2024
+365,melta101,melta101: i was replying the Jason's previous msg talking about the prerequisite,i was replying the Jason's previous msg talking about the prerequisite,[],general,gsoc,2023-2024
+366,lorforlinux,"lorforlinux: @JKridner From Google: 
+> And if possible, an easy, intermediate or hard/difficult rating of each project. This helps the more inexperienced folks not get overwhelmed and they can focus on reviewing easy project ideas.","@JKridner From Google: 
+> And if possible, an easy, intermediate or hard/difficult rating of each project. This helps the more inexperienced folks not get overwhelmed and they can focus on reviewing easy project ideas.",[],gsoc_planning,gsoc,2023-2024
+367,unknown,GSoC Forum Bot: ,GSoC Forum Bot:,[],gsoc_planning,gsoc,2023-2024
+368,jkridner,"jkridner: > Please review your org app for these common mistakes that could result in your org app being rejected.
+> 
+>     Project sizes need to be scoped to 90, 175 or 350 hours (you can not have a project that is 200 hours, or some other random number of hours).
+>     Make sure your Project Ideas list is public so GSoC Google reviewers can access it.
+>     Make sure your Project Ideas include the ALL of the required information below:
+> 
+> a) a project title/description
+> b) more detailed description o","> Please review your org app for these common mistakes that could result in your org app being rejected.
+> 
+>     Project sizes need to be scoped to 90, 175 or 350 hours (you can not have a project that is 200 hours, or some other random number of hours).
+>     Make sure your Project Ideas list is public so GSoC Google reviewers can access it.
+>     Make sure your Project Ideas include the ALL of the required information below:
+> 
+> a) a project title/description
+> b) more detailed description o",[],gsoc_planning,gsoc,2023-2024
+369,jkridner,"jkridner: @lorforlinux In the end, to be safe, I think we need more of the information to be copied from the forum to the site on the key project ideas:
+1. Let's switch our small, medium, large terminology to 90 hours, 175 hours and 350 hours.
+2. Let's add links to mentors profiles on the forum
+3. Let's bring in the skill elements into the site
+4. Let's make sure the outcome is highlighted.
+5. Let's perhaps use a dropdown or something to have a more detailed description right on the page","@lorforlinux In the end, to be safe, I think we need more of the information to be copied from the forum to the site on the key project ideas:
+1. Let's switch our small, medium, large terminology to 90 hours, 175 hours and 350 hours.
+2. Let's add links to mentors profiles on the forum
+3. Let's bring in the skill elements into the site
+4. Let's make sure the outcome is highlighted.
+5. Let's perhaps use a dropdown or something to have a more detailed description right on the page",[],gsoc_planning,gsoc,2023-2024
+370,lorforlinux,"lorforlinux: @darsh As per latest guidelines from Google the text here should be `GSoC contributor application`. 
+Fixed that: https://openbeagle.org/gsoc/gsoc.beagleboard.io/-/merge_requests/17","@darsh As per latest guidelines from Google the text here should be `GSoC contributor application`. 
+Fixed that: https://openbeagle.org/gsoc/gsoc.beagleboard.io/-/merge_requests/17",['https://openbeagle.org/gsoc/gsoc.beagleboard.io/-/merge_requests/17'],gsoc_planning,gsoc,2023-2024
+371,jkridner,"jkridner: Definitely open to more ML ideas, but the big thing is to get things that excite community members with a history of contribution to jump in and mentor the effort. I have a passion for filtering junk out of the eyes of my 8 year old child.","Definitely open to more ML ideas, but the big thing is to get things that excite community members with a history of contribution to jump in and mentor the effort. I have a passion for filtering junk out of the eyes of my 8 year old child.",[],gsoc_planning,gsoc,2023-2024
+372,jkridner,"jkridner: things we like to avoid are demos..... it is about building frameworks for people to augment and extend. the commercial removal idea is intended to be more of a real-time video classifier that can trigger audio/video effects, including commercial removal.","things we like to avoid are demos..... it is about building frameworks for people to augment and extend. the commercial removal idea is intended to be more of a real-time video classifier that can trigger audio/video effects, including commercial removal.",[],gsoc_planning,gsoc,2023-2024
+373,jkridner,jkridner: @lorforlinux is there more we can bake into our prerequisites to show they can understand git and upstream contribution? perhaps we could make a Linux kernel that'll run on Linux such that we can boot the kernel within a CI and see a kernel module print?,@lorforlinux is there more we can bake into our prerequisites to show they can understand git and upstream contribution? perhaps we could make a Linux kernel that'll run on Linux such that we can boot the kernel within a CI and see a kernel module print?,[],kernel_dev,gsoc,2023-2024
+374,jkridner,jkridner: probably boot the kernel with qemu?,probably boot the kernel with qemu?,[],kernel_dev,gsoc,2023-2024
+375,jkridner,jkridner: quick google result that looks rational: https://mgalgs.io/2021/03/23/how-to-build-a-custom-linux-kernel-for-qemu-using-docker.html,quick google result that looks rational: https://mgalgs.io/2021/03/23/how-to-build-a-custom-linux-kernel-for-qemu-using-docker.html,['https://mgalgs.io/2021/03/23/how-to-build-a-custom-linux-kernel-for-qemu-using-docker.html'],kernel_dev,gsoc,2023-2024
+376,jkridner,jkridner: I might be able to cook up the same for Zephyr quickly.,I might be able to cook up the same for Zephyr quickly.,[],zephyr,gsoc,2023-2024
+377,jkridner,jkridner: Welcome @Adarsh !  Please feel encouraged to share more about yourself and your interests. Visiting the https://bbb.io/gsocideas page might provide inspiration. Contributing to open source is very much about building community--understanding problems faced by community members and matching your skills to help solve those problems.,Welcome @Adarsh !  Please feel encouraged to share more about yourself and your interests. Visiting the https://bbb.io/gsocideas page might provide inspiration. Contributing to open source is very much about building community--understanding problems faced by community members and matching your skills to help solve those problems.,['https://bbb.io/gsocideas'],gsoc_planning,gsoc,2023-2024
+378,jkridner,"jkridner: This 'all-hands office hour' is all about knowing there will be people on-line and interacting on GSoC topics, so please look to spend this hour with us every week and get to know what is going on in our community.","This 'all-hands office hour' is all about knowing there will be people on-line and interacting on GSoC topics, so please look to spend this hour with us every week and get to know what is going on in our community.",[],gsoc_planning,gsoc,2023-2024
+379,jkridner,jkridner: don't hesitate to check out the other channels and see what topics are common. poking around on the forum is good.,don't hesitate to check out the other channels and see what topics are common. poking around on the forum is good.,[],general,gsoc,2023-2024
+380,jkridner,"jkridner: also, please don't hesitate to speak your mind. if you get some impression, please share it with openness and compassion. we try to always be improving and know some things can be intimidating or feel uncomfortable.","also, please don't hesitate to speak your mind. if you get some impression, please share it with openness and compassion. we try to always be improving and know some things can be intimidating or feel uncomfortable.",[],general,gsoc,2023-2024
+381,jkridner,jkridner: @lorforlinux I want to get fixes on https://bbb.io/gsocideas up *fast*. What do we need to sync here on?,@lorforlinux I want to get fixes on https://bbb.io/gsocideas up *fast*. What do we need to sync here on?,['https://bbb.io/gsocideas'],gsoc_planning,gsoc,2023-2024
+382,jkridner,"jkridner: if you aren't doing something right away, I might go ahead and just push my approach.","if you aren't doing something right away, I might go ahead and just push my approach.",[],general,gsoc,2023-2024
+383,lorforlinux,lorforlinux: I think that's a great idea @JKridner the build may take a lot of CI time though.,I think that's a great idea @JKridner the build may take a lot of CI time though.,[],gsoc_planning,gsoc,2023-2024
+384,jkridner,jkridner: perhaps. a lot of time on the beagle kernel is spent building a *huge* set of drivers.,perhaps. a lot of time on the beagle kernel is spent building a *huge* set of drivers.,[],kernel_dev,gsoc,2023-2024
+385,jkridner,"jkridner: if we minimize the drivers, the build time can probably be pretty small.","if we minimize the drivers, the build time can probably be pretty small.",[],general,gsoc,2023-2024
+386,jkridner,jkridner: We can also build kernel modules using the Beagle pre-built kernel and then just run the kernel in `qemu`. That might save time and be a more fruitful test.,We can also build kernel modules using the Beagle pre-built kernel and then just run the kernel in `qemu`. That might save time and be a more fruitful test.,[],kernel_dev,gsoc,2023-2024
+387,lorforlinux,lorforlinux: Can we merge this and start working on the updates? https://openbeagle.org/gsoc/gsoc.beagleboard.io/-/merge_requests/17,Can we merge this and start working on the updates? https://openbeagle.org/gsoc/gsoc.beagleboard.io/-/merge_requests/17,['https://openbeagle.org/gsoc/gsoc.beagleboard.io/-/merge_requests/17'],gsoc_planning,gsoc,2023-2024
+388,jkridner,jkridner: however you'd like. I just want to get it done. 😄,however you'd like. I just want to get it done. 😄,[],general,gsoc,2023-2024
+389,jkridner,jkridner: I'll split the task up any way you'd like.,I'll split the task up any way you'd like.,[],general,gsoc,2023-2024
+390,lorforlinux,"lorforlinux: Please go ahead with the changes, I need some reference to make new changes. It would be very good see how you want things to look, before I make any updates.","Please go ahead with the changes, I need some reference to make new changes. It would be very good see how you want things to look, before I make any updates.",[],general,gsoc,2023-2024
+391,lorforlinux,"lorforlinux: Most of our content is in good shape, we need to make sure people actually know that we have more project ideas on Forum.","Most of our content is in good shape, we need to make sure people actually know that we have more project ideas on Forum.",[],gsoc_planning,gsoc,2023-2024
+392,melta101,melta101: Any part you guys need a hand in?,Any part you guys need a hand in?,[],general,gsoc,2023-2024
+393,lorforlinux,lorforlinux: We just have to makes sure everything is aligned with these gudilines from Google.,We just have to makes sure everything is aligned with these gudilines from Google.,[],general,gsoc,2023-2024
+394,jkridner,jkridner: I'm pushing a bunch of patches to my branch to try to get it in-line. I'm currently trying sidebars and removing the 2-up ideas to try to move them higher on the page.,I'm pushing a bunch of patches to my branch to try to get it in-line. I'm currently trying sidebars and removing the 2-up ideas to try to move them higher on the page.,[],kernel_dev,gsoc,2023-2024
+395,unknown,GSoC Forum Bot: ,GSoC Forum Bot:,[],gsoc_planning,gsoc,2023-2024
+396,unknown,GSoC Forum Bot: ,GSoC Forum Bot:,[],gsoc_planning,gsoc,2023-2024
+397,jkridner,"jkridner: I think we need specific introductions (aka., further reading) for each of our hardware and software skills. Ideally, they would point back to something at https://docs.beagleboard.org, but if they go to a 3rd party site, that would be fine.","I think we need specific introductions (aka., further reading) for each of our hardware and software skills. Ideally, they would point back to something at https://docs.beagleboard.org, but if they go to a 3rd party site, that would be fine.","['https://docs.beagleboard.org,']",gsoc_planning,gsoc,2023-2024
+398,jkridner,jkridner: I just think leaving them hanging doesn't give new people a starting point.,I just think leaving them hanging doesn't give new people a starting point.,[],general,gsoc,2023-2024
+399,jkridner,jkridner: I could probably create some placeholders at https://jkridner.beagleboard.io/docs.,I could probably create some placeholders at https://jkridner.beagleboard.io/docs.,['https://jkridner.beagleboard.io/docs.'],general,gsoc,2023-2024
+400,jkridner,jkridner: @lorforlinux can I get a super-fast review of https://jkridner.beagleboard.io/gsoc such that we can merge something like this?,@lorforlinux can I get a super-fast review of https://jkridner.beagleboard.io/gsoc such that we can merge something like this?,['https://jkridner.beagleboard.io/gsoc'],gsoc_planning,gsoc,2023-2024
+401,unknown,GSoC Forum Bot: ,GSoC Forum Bot:,[],gsoc_planning,gsoc,2023-2024
+402,unknown,GSoC Forum Bot: ,GSoC Forum Bot:,[],gsoc_planning,gsoc,2023-2024
+403,jkridner,jkridner: @lorforlinux have you reviewed my changes?,@lorforlinux have you reviewed my changes?,[],general,gsoc,2023-2024
+404,jkridner,"jkridner: k, @lorforlinux, you'll need to back my changes out if you don't like them. 😄","k, @lorforlinux, you'll need to back my changes out if you don't like them. 😄",[],general,gsoc,2023-2024
+405,lorforlinux,"lorforlinux: Not yet, I was out of Lab today.","Not yet, I was out of Lab today.",[],general,gsoc,2023-2024
+406,lorforlinux,lorforlinux: ,,[],general,gsoc,2023-2024
+407,lorforlinux,"lorforlinux: I will keep the content but change the structure a bit so that it looks good on all screen, I hope that's okay.","I will keep the content but change the structure a bit so that it looks good on all screen, I hope that's okay.",[],general,gsoc,2023-2024
+408,jkridner,"jkridner: that's fine, but I hope you keep the ideas very close to the top of the screen.","that's fine, but I hope you keep the ideas very close to the top of the screen.",[],gsoc_planning,gsoc,2023-2024
+409,jkridner,jkridner: @lorforlinux I did not like needing to scroll past many distractions before I started to read the ideas.,@lorforlinux I did not like needing to scroll past many distractions before I started to read the ideas.,[],gsoc_planning,gsoc,2023-2024
+410,lorforlinux,lorforlinux: @JKridner I totally agree with you.,@JKridner I totally agree with you.,[],general,gsoc,2023-2024
+411,unknown,GSoC Forum Bot: ,GSoC Forum Bot:,[],gsoc_planning,gsoc,2023-2024
+412,unknown,GSoC Forum Bot: ,GSoC Forum Bot:,[],gsoc_planning,gsoc,2023-2024
+413,unknown,GSoC Forum Bot: ,GSoC Forum Bot:,[],gsoc_planning,gsoc,2023-2024
+414,unknown,GSoC Forum Bot: ,GSoC Forum Bot:,[],gsoc_planning,gsoc,2023-2024
+415,unknown,GSoC Forum Bot: ,GSoC Forum Bot:,[],gsoc_planning,gsoc,2023-2024
+416,unknown,GSoC Forum Bot: ,GSoC Forum Bot:,[],gsoc_planning,gsoc,2023-2024
+417,unknown,GSoC Forum Bot: ,GSoC Forum Bot:,[],gsoc_planning,gsoc,2023-2024
+418,unknown,GSoC Forum Bot: ,GSoC Forum Bot:,[],gsoc_planning,gsoc,2023-2024
+419,unknown,GSoC Forum Bot: ,GSoC Forum Bot:,[],gsoc_planning,gsoc,2023-2024
+420,unknown,GSoC Forum Bot: ,GSoC Forum Bot:,[],gsoc_planning,gsoc,2023-2024
+421,unknown,GSoC Forum Bot: ,GSoC Forum Bot:,[],gsoc_planning,gsoc,2023-2024
+422,unknown,GSoC Forum Bot: ,GSoC Forum Bot:,[],gsoc_planning,gsoc,2023-2024
+423,unknown,GSoC Forum Bot: ,GSoC Forum Bot:,[],gsoc_planning,gsoc,2023-2024
+424,unknown,GSoC Forum Bot: ,GSoC Forum Bot:,[],gsoc_planning,gsoc,2023-2024
+425,unknown,GSoC Forum Bot: ,GSoC Forum Bot:,[],gsoc_planning,gsoc,2023-2024
+426,unknown,GSoC Forum Bot: ,GSoC Forum Bot:,[],gsoc_planning,gsoc,2023-2024
+427,unknown,GSoC Forum Bot: ,GSoC Forum Bot:,[],gsoc_planning,gsoc,2023-2024
+428,atharvdubey,atharvdubey: Hello everyone! I am  Atharv Dubey a sophmore studying ECE at VJTI Mumbai. I am an embedded systems enthusiast and I am willing to participate in  GSoC  focusing on **Extending librobotcontrol support for newer boards.** I am excited to learn new things and looking forward to connect with the community !,Hello everyone! I am  Atharv Dubey a sophmore studying ECE at VJTI Mumbai. I am an embedded systems enthusiast and I am willing to participate in  GSoC  focusing on **Extending librobotcontrol support for newer boards.** I am excited to learn new things and looking forward to connect with the community !,[],gsoc_planning,gsoc,2023-2024
+429,atharvdubey,atharvdubey: Could you please guide me on how to get started ?,Could you please guide me on how to get started ?,[],general,gsoc,2023-2024
+430,unknown,GSoC Forum Bot: ,GSoC Forum Bot:,[],gsoc_planning,gsoc,2023-2024
+431,nmenon,nmenon: Congratulations! BeagleBoard.org has been selected as a Google Summer of Code 2024 mentor organization.,Congratulations! BeagleBoard.org has been selected as a Google Summer of Code 2024 mentor organization.,[],gsoc_planning,gsoc,2023-2024
+432,unknown,GSoC Forum Bot: ,GSoC Forum Bot:,[],gsoc_planning,gsoc,2023-2024
+433,unknown,GSoC Forum Bot: ,GSoC Forum Bot:,[],gsoc_planning,gsoc,2023-2024
+434,unknown,GSoC Forum Bot: ,GSoC Forum Bot:,[],gsoc_planning,gsoc,2023-2024
+435,jkridner,jkridner: announcement doesn't go out to tomorrow. you should have read your e-mail better.,announcement doesn't go out to tomorrow. you should have read your e-mail better.,[],general,gsoc,2023-2024
+436,jkridner,jkridner: you only know because you are an admin.,you only know because you are an admin.,[],general,gsoc,2023-2024
+437,nmenon,nmenon: Whoops 😦,Whoops 😦,[],general,gsoc,2023-2024
+438,jkridner,jkridner: 😄,😄,[],general,gsoc,2023-2024
+439,lorforlinux,lorforlinux: https://summerofcode.withgoogle.com/programs/2024/organizations/beagleboardorg,https://summerofcode.withgoogle.com/programs/2024/organizations/beagleboardorg,['https://summerofcode.withgoogle.com/programs/2024/organizations/beagleboardorg'],general,gsoc,2023-2024
+440,unknown,GSoC Forum Bot: ,GSoC Forum Bot:,[],gsoc_planning,gsoc,2023-2024
+441,nitish_jha22,"nitish_jha22: Hi i am nitish jha a computer science undergrad from india , i am interested in contributing to BeagleBoard for gSoc 24 and i am interested in  FPGA gateware improvements project , so please can someone guide me how to get started with project","Hi i am nitish jha a computer science undergrad from india , i am interested in contributing to BeagleBoard for gSoc 24 and i am interested in  FPGA gateware improvements project , so please can someone guide me how to get started with project",[],gsoc_planning,gsoc,2023-2024
+442,silver2row,silver2row: https://forum.beagleboard.org/c/gsoc/13 @Nj221102,https://forum.beagleboard.org/c/gsoc/13 @Nj221102,['https://forum.beagleboard.org/c/gsoc/13'],gsoc_planning,gsoc,2023-2024
+443,unknowncosmo,"unknowncosmo: Hello everyone, I've been following the proposal and site editing guide so I'm currently trying to fork https://openbeagle.org/gsoc/gsoc.beagleboard.io. I'd like to begin work on my proposal, fill out some administrivia sections, and identify any holes in my knowledge so far. However the button to do so is greyed out and I believe its because I'm not added to the gsoc project itself. I'm wondering if forking could be enabled for me? I can provide information on my OpenBeagle account if required.","Hello everyone, I've been following the proposal and site editing guide so I'm currently trying to fork https://openbeagle.org/gsoc/gsoc.beagleboard.io. I'd like to begin work on my proposal, fill out some administrivia sections, and identify any holes in my knowledge so far. However the button to do so is greyed out and I believe its because I'm not added to the gsoc project itself. I'm wondering if forking could be enabled for me? I can provide information on my OpenBeagle account if required.",['https://openbeagle.org/gsoc/gsoc.beagleboard.io.'],gsoc_planning,gsoc,2023-2024
+444,unknown,cathybeagleboard.org_49739_70204: Good morning,cathybeagleboard.org_49739_70204: Good morning,[],general,gsoc,2023-2024
+445,unknown,cathybeagleboard.org_49739_70204: Newbie to Discord - here we go!,cathybeagleboard.org_49739_70204: Newbie to Discord - here we go!,[],general,gsoc,2023-2024
+446,jkridner,jkridner: hi @Cathy@beagleboard.org !,hi @Cathy@beagleboard.org !,[],general,gsoc,2023-2024
+447,jkridner,jkridner: so glad to see you here,so glad to see you here,[],general,gsoc,2023-2024
+448,jkridner,jkridner: Can you screen shot? What is greyed out?,Can you screen shot? What is greyed out?,[],general,gsoc,2023-2024
+449,jkridner,"jkridner: indeed, @Seth_ is right. Read up on the chats in the forum and give a bit more thought on how you'd like to approach one of the ideas.","indeed, @Seth_ is right. Read up on the chats in the forum and give a bit more thought on how you'd like to approach one of the ideas.",[],gsoc_planning,gsoc,2023-2024
+450,lorforlinux,lorforlinux: @here Hello everyone,@here Hello everyone,[],general,gsoc,2023-2024
+451,lorforlinux,"lorforlinux: Hey Cathy, good to see you!","Hey Cathy, good to see you!",[],general,gsoc,2023-2024
+452,godzil,godzil: Errr. could you avoid a `at here` just to say hello?,Errr. could you avoid a `at here` just to say hello?,[],general,gsoc,2023-2024
+453,jkridner,jkridner: we are starting a meeting.,we are starting a meeting.,[],general,gsoc,2023-2024
+454,nmenon,nmenon: Are we going voice channel?,Are we going voice channel?,[],general,gsoc,2023-2024
+455,jkridner,"jkridner: would be good if it was only for this channel. this is an all-hands office hour, so we expect people engaged with our GSoC to be around as much as they can for this hour.","would be good if it was only for this channel. this is an all-hands office hour, so we expect people engaged with our GSoC to be around as much as they can for this hour.",[],gsoc_planning,gsoc,2023-2024
+456,jkridner,jkridner: @Nishanth Menon I hope not. 😄,@Nishanth Menon I hope not. 😄,[],general,gsoc,2023-2024
+457,jkridner,"jkridner: @Nishanth Menon if we want to do introductions, that's fine.","@Nishanth Menon if we want to do introductions, that's fine.",[],general,gsoc,2023-2024
+458,godzil,godzil: @JKridner ok,@JKridner ok,[],general,gsoc,2023-2024
+459,jkridner,"jkridner: it'll happen every week, but should not be more for that... specific projects can meet more often on their own.","it'll happen every week, but should not be more for that... specific projects can meet more often on their own.",[],general,gsoc,2023-2024
+460,jkridner,jkridner: I guess the @ here is really not liked. 😉,I guess the @ here is really not liked. 😉,[],general,gsoc,2023-2024
+461,jkridner,jkridner: good to let people know that this channel will be attended live at this time window for quick turn-around on GSoC logistics,good to let people know that this channel will be attended live at this time window for quick turn-around on GSoC logistics,[],gsoc_planning,gsoc,2023-2024
+462,jkridner,jkridner: this is a good time to ask questions and know you'll get a quick response.,this is a good time to ask questions and know you'll get a quick response.,[],general,gsoc,2023-2024
+463,jkridner,jkridner: what do people think of the new https://gsoc.beagleboard.io ?,what do people think of the new https://gsoc.beagleboard.io ?,['https://gsoc.beagleboard.io'],gsoc_planning,gsoc,2023-2024
+464,jkridner,"jkridner: this channel has links to important sites in the description, so be sure to check them.","this channel has links to important sites in the description, so be sure to check them.",[],general,gsoc,2023-2024
+465,jkridner,jkridner: do we need to promote more ideas to the site itself? how are we doing on engaged mentors?,do we need to promote more ideas to the site itself? how are we doing on engaged mentors?,[],gsoc_planning,gsoc,2023-2024
+466,jkridner,jkridner: who can send email blasts asking for mentor participation? 😄,who can send email blasts asking for mentor participation? 😄,[],gsoc_planning,gsoc,2023-2024
+467,nmenon,"nmenon: Will throw this in there.. my Intro: hi folks, I work for TI, Linux kernel, UBoot and low level stuff is my passion. I also maintain TI device trees in kernel.org for k3 SoC. Most stuff in  about am62(BeaglePlay), tda4(ai64), I can try and help.. mentorship, sure can help, but will be more useful with multiple mentors due to work commitments.. hit me up as needed.","Will throw this in there.. my Intro: hi folks, I work for TI, Linux kernel, UBoot and low level stuff is my passion. I also maintain TI device trees in kernel.org for k3 SoC. Most stuff in  about am62(BeaglePlay), tda4(ai64), I can try and help.. mentorship, sure can help, but will be more useful with multiple mentors due to work commitments.. hit me up as needed.",[],kernel_dev,gsoc,2023-2024
+468,unknown,cathybeagleboard.org_49739_70204: Wow!,cathybeagleboard.org_49739_70204: Wow!,[],general,gsoc,2023-2024
+469,unknown,cathybeagleboard.org_49739_70204: Excited to see the new page!,cathybeagleboard.org_49739_70204: Excited to see the new page!,[],general,gsoc,2023-2024
+470,kurtnelle,kurtnelle: @lorforlinux is you crazy?!,@lorforlinux is you crazy?!,[],general,gsoc,2023-2024
+471,lorforlinux,lorforlinux: What?,What?,[],general,gsoc,2023-2024
+472,melta101,melta101: Hello,Hello,[],general,gsoc,2023-2024
+473,jkridner,"jkridner: I think it is just reactions for getting pinged. we have over 1,200 users here now.... many are casual.","I think it is just reactions for getting pinged. we have over 1,200 users here now.... many are casual.",[],general,gsoc,2023-2024
+474,jkridner,jkridner: hi @melta101 !,hi @melta101 !,[],general,gsoc,2023-2024
+475,jkridner,"jkridner: Our admins for GSoC are me, @Cathy@beagleboard.org and @Nishanth Menon ... though @lorforlinux is doing a *lot* of the heavy lifting for us.","Our admins for GSoC are me, @Cathy@beagleboard.org and @Nishanth Menon ... though @lorforlinux is doing a *lot* of the heavy lifting for us.",[],gsoc_planning,gsoc,2023-2024
+476,melta101,melta101: Congratulations on beagleboard going for 11 years as contributors,Congratulations on beagleboard going for 11 years as contributors,[],general,gsoc,2023-2024
+477,unknown,"cathybeagleboard.org_49739_70204: Hi Folks, I'm Cathy Wicks cathy@beagleboard.org. I've been excited to connect students to BeagleBoard.org since the beginning.  My home town is in Texas, I'm currently travelling.  I help out with GSoC admin and communications with GSoC project teams","cathybeagleboard.org_49739_70204: Hi Folks, I'm Cathy Wicks cathy@beagleboard.org. I've been excited to connect students to BeagleBoard.org since the beginning.  My home town is in Texas, I'm currently travelling.  I help out with GSoC admin and communications with GSoC project teams",[],gsoc_planning,gsoc,2023-2024
+478,jkridner,"jkridner: @lorforlinux is also been both a contributor and mentor, so has experience from both sides. 😄","@lorforlinux is also been both a contributor and mentor, so has experience from both sides. 😄",[],gsoc_planning,gsoc,2023-2024
+479,jkridner,"jkridner: I'm also from Texas, but live in Michigan now. I have an 8 year-old named Bash who loves baseball. I started Beagle back in 2007 and @Cathy@beagleboard.org has been along the ride that whole time. I'm now one of 5 board members at BeagleBoard.org Foundation and act as the chief-technologist or some such.","I'm also from Texas, but live in Michigan now. I have an 8 year-old named Bash who loves baseball. I started Beagle back in 2007 and @Cathy@beagleboard.org has been along the ride that whole time. I'm now one of 5 board members at BeagleBoard.org Foundation and act as the chief-technologist or some such.",[],general,gsoc,2023-2024
+480,jkridner,"jkridner: @Cathy@beagleboard.org has been involved with university engagements before there was even a Beagle, so we really appreciate her passion and experience. She cannot hide how much she loves helping students succeed.","@Cathy@beagleboard.org has been involved with university engagements before there was even a Beagle, so we really appreciate her passion and experience. She cannot hide how much she loves helping students succeed.",[],general,gsoc,2023-2024
+481,jkridner,jkridner: (And I cannot hide how much I despise closed ecosystems like Discord 😉 ),(And I cannot hide how much I despise closed ecosystems like Discord 😉 ),[],general,gsoc,2023-2024
+482,jkridner,"jkridner: it would be great to me if someone posted minutes to https://forum.beagleboard.org/c/gsoc, but I'm probably too lazy.","it would be great to me if someone posted minutes to https://forum.beagleboard.org/c/gsoc, but I'm probably too lazy.","['https://forum.beagleboard.org/c/gsoc,']",gsoc_planning,gsoc,2023-2024
+483,jkridner,jkridner: This year makes 13 out of the 20 years of GSoC.,This year makes 13 out of the 20 years of GSoC.,[],gsoc_planning,gsoc,2023-2024
+484,jkridner,jkridner: https://gsoc.beagleboard.io/projects/index.html,https://gsoc.beagleboard.io/projects/index.html,['https://gsoc.beagleboard.io/projects/index.html'],gsoc_planning,gsoc,2023-2024
+485,melta101,melta101: My bad 😬,My bad 😬,[],general,gsoc,2023-2024
+486,jkridner,"jkridner: For those that don't know much about Beagle, I love to show the 2 videos posted on https://gsoc.beagleboard.io .. https://www.youtube.com/watch?v=sY5WQG3-3mo and https://www.youtube.com/watch?v=CbL_3le40qc","For those that don't know much about Beagle, I love to show the 2 videos posted on https://gsoc.beagleboard.io .. https://www.youtube.com/watch?v=sY5WQG3-3mo and https://www.youtube.com/watch?v=CbL_3le40qc","['https://gsoc.beagleboard.io', 'https://www.youtube.com/watch?v=sY5WQG3-3mo', 'https://www.youtube.com/watch?v=CbL_3le40qc']",gsoc_planning,gsoc,2023-2024
+487,jkridner,"jkridner: about 6 seconds into the National Geographic special on the Europa rover, you'll see BeagleBone Black at the heart of the rover.","about 6 seconds into the National Geographic special on the Europa rover, you'll see BeagleBone Black at the heart of the rover.",[],general,gsoc,2023-2024
+488,jkridner,jkridner: The cheeseburger robot has 14 BeagleBone Black boards inside.,The cheeseburger robot has 14 BeagleBone Black boards inside.,[],general,gsoc,2023-2024
+489,anujdeshpande,"anujdeshpande: > The cheeseburger robot has 14 BeagleBone Black boards inside.
+Is that some kind of record 😅","> The cheeseburger robot has 14 BeagleBone Black boards inside.
+Is that some kind of record 😅",[],general,gsoc,2023-2024
+490,jkridner,jkridner: probably not....,probably not....,[],general,gsoc,2023-2024
+491,jkridner,jkridner: https://www.beagleboard.org/projects/three-story-tall-clock-final-entry,https://www.beagleboard.org/projects/three-story-tall-clock-final-entry,['https://www.beagleboard.org/projects/three-story-tall-clock-final-entry'],general,gsoc,2023-2024
+492,unknown,cathybeagleboard.org_49739_70204: One of my favorite BeagleBone applications - is PourSteady which makes the most delicious cuppa coffee at my coffee shop https://www.beagleboard.org/blog/2018-10-22-poursteady,cathybeagleboard.org_49739_70204: One of my favorite BeagleBone applications - is PourSteady which makes the most delicious cuppa coffee at my coffee shop https://www.beagleboard.org/blog/2018-10-22-poursteady,['https://www.beagleboard.org/blog/2018-10-22-poursteady'],general,gsoc,2023-2024
+493,jkridner,jkridner: That has 80?,That has 80?,[],general,gsoc,2023-2024
+494,unknown,cathybeagleboard.org_49739_70204: Hi @JKridner if I'm a student here today - what should I do next to develop my proposal?,cathybeagleboard.org_49739_70204: Hi @JKridner if I'm a student here today - what should I do next to develop my proposal?,[],gsoc_planning,gsoc,2023-2024
+495,lorforlinux,lorforlinux: We have a new proposal writing guide on our new site that contributors can follow to write a proposal https://gsoc.beagleboard.io/guides/proposal.html,We have a new proposal writing guide on our new site that contributors can follow to write a proposal https://gsoc.beagleboard.io/guides/proposal.html,['https://gsoc.beagleboard.io/guides/proposal.html'],gsoc_planning,gsoc,2023-2024
+496,jkridner,"jkridner: if looking for inspiration, explore the ideas on https://bbb.io/gsocideas","if looking for inspiration, explore the ideas on https://bbb.io/gsocideas",['https://bbb.io/gsocideas'],gsoc_planning,gsoc,2023-2024
+497,jkridner,"jkridner: if you have an idea what you'd like to do, start talking about it.","if you have an idea what you'd like to do, start talking about it.",[],gsoc_planning,gsoc,2023-2024
+498,jkridner,"jkridner: like, for me, I have *lots* of ideas.","like, for me, I have *lots* of ideas.",[],gsoc_planning,gsoc,2023-2024
+499,jkridner,jkridner: one of the more out-there ideas I have is making a TV commercial removing appliance.,one of the more out-there ideas I have is making a TV commercial removing appliance.,[],gsoc_planning,gsoc,2023-2024
+500,jkridner,jkridner: I discussed it at https://bbb.io/gsocml,I discussed it at https://bbb.io/gsocml,['https://bbb.io/gsocml'],gsoc_planning,gsoc,2023-2024
